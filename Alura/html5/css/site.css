@@ -1,0 +1,49 @@
+
+body {
+    font-family: "Crimson Text", "Times New Roman", serif;
+    background-color: #F2FFFC;
+    font-size: 120%;
+    line-height: 1.5;
+}
+
+h1,
+h2 {
+    font-family: "Open Sans Condensed", "Arial", sans-serif;
+}
+
+main h1 {
+    font-size: 60px;
+    text-align: center;
+    background-color: #851944;
+    color: #FFF;
+    padding: 25px;
+    border-bottom: 10px solid #000;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 40px;
+    clear: both;
+}
+
+main a {
+    color: #851944;
+    text-transform: lowercase;
+}
+
+p {
+    text-align: justify;
+    margin: 20px 0;
+}
+
+s main {
+    float: left;
+    width: 85%;
+}
+
+footer {
+    clear: both;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
