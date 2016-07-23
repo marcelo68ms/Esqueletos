@@ -1,115 +1,18 @@
-
-blockquote {
+.citacao-bio {
     background-color: #D9E5E3;
-    border: 10px solid #C2CCCA;
-    padding: 20px;
-    margin: 20px 40px;
-    width: 250px;
+    border: .5em solid #C2CCCA;
+    padding: 1em;
+    margin: 1em 2em;
+    width: 30ch;
     box-sizing: border-box;
-}
-
-.fiat {
-    float: right;
 }
 
 .petrobras {
     float: left;
+    margin-left: 0;
 }
 
-aside {
-    text-align: center;
-    background-color: #3C1D3D;
-    color: #F2FFFC;
-    padding: 20px;
-    position: relative;
-    top: 310px;
-}
-
-aside a {
-    color: inherit;
-    font-family: "Open Sans Condensed", "Arial", sans-serif;
-}
-
-aside h1 {
-    font-size: 30px;
-    margin-bottom: 25px;
-}
-
-.rodape-pagina {
-    background-color: #000;
-    color: #F2FFFC;
-    padding: 20px;
-}
-
-div {
-    width: 720px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 30px 0;
-}
-
-strong {
-    font-weight: bold;
-}
-
-em {
-    font-style: italic;
-}
-
-.icone-social li {
-    display: inline-block;
-}
-
-article {
-    padding-bottom: 30px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-}
-
-.leia-mais {
-    padding: 8px;
-    margin: 16px;
-    display: block;
-    font-size: 24px;
-    text-align: center;
-    background-color: #E6E7E8;
-}
-
-.icones-redes-sociais li {
-    display: inline-block;
-}
-
-.icones-redes-sociais a {
-    width: 40px;
-    height: 40px;
-    display: block;
-    text-indent: -99999px;
-}
-
-.github {
-    background-image: url(github.png);
-}
-
-.twitter {
-    background-image: url(twitter.png);
-}
-
-.linkedin {
-    background-image: url(linkedin.png);
-}
-
-aside, img {
+.fiat {
     float: right;
-    width: 15%;
-}
-
-img {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
-aside {
-    clear: right;
-    box-sizing: border-box;
+    margin-right: 0;
 }
