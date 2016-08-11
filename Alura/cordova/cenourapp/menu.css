@@ -26,27 +26,35 @@ label {
     font-size: 75%;
     padding: 4em 0 1em;
     text-transform: uppercase;
-}
-    label[for=opcao-bolos] {
-        background-image: url(imagens/icone-bolos.svg);
-    }
-    label[for=opcao-bebidas] {
-        background-image: url(imagens/icone-bebidas.svg);
-    }
-    :checked + label {
-        background-color: #E4876D;
-    }
-
-label {
     width: 50%;
-
     position: fixed;
     bottom: 0;
-    z-index: 1;
+    z-index: 1;    
 }
-    label[for=opcao-bolos] {
-        left: 0;
-    }
-    label[for=opcao-bebidas] {
-        right: 0;
-    }
+label[for=opcao-bolos] {
+    background-image: url(imagens/icone-bolos.svg);
+    left: 0;
+}
+label[for=opcao-bebidas] {
+    background-image: url(imagens/icone-bebidas.svg);
+    right: 0;
+}
+:checked + label {
+    background-color: #E4876D;
+}
+
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+.container-menus {
+    transform: translateX(0);
+    transition: transform 300ms ease;
+    width: 200%;
+}
+
+.container-menus .menu {
+    float: left;
+    width: 50%;
+}
