@@ -13,3 +13,26 @@ $('.collection')
         $badge.text(parseInt($badge.text()) + 1);
     })
 
+$('#confirmar').on('click', function() {
+    var texto = "";
+
+    $('.badge').parent().each(function(){
+        texto += this.firstChild.textContent + ': ';
+        texto += this.lastChild.textContent + ', ';
+    });
+
+    $('#resumo').empty().text(texto);
+});
+
+$('.collection')
+    .on('click', '.badge', function() {
+        $(this).remove();
+        return false;
+    })
+
+$('.acao-limpar').on('click', function() {
+    $('#numero-mesa').val('');
+    $('.badge').remove();
+});
+
+$('.modal-trigger').leanModal();
