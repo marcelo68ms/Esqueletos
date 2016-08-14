@@ -74,6 +74,36 @@
         </div>
     </div>
 
+    <div class="fixed-action-btn">
+    <a href="#confirmacao" id="confirmar" class="btn-floating btn-large waves-effect waves-large brown modal-trigger">
+        <i class="material-icons">done</i>
+    </a>
+    </div>
+
+    <ul id="submenu" class="dropdown-content">
+        <li><a class="black-text acao-limpar">Limpar</a></li>
+    </ul>
+
+    <i class="material-icons waves-effect waves-light
+                waves-circle dropdown-button"
+        data-activates="submenu" data-gutter="5"
+        data-constrainwidth="false">
+        more_vert
+    </i>
+
+    <div id="confirmacao" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h5>Resumo do pedido</h5>
+            <input id="numero-mesa" type="number" class="validate" placeholder="Número da mesa">
+            <blockquote id="resumo"></blockquote>
+        </div>
+        <div class="modal-footer">
+            <button class="btn deep-orange waves-effect waves-light modal-close">Pedir</button>
+            <button class="btn-flat waves-effect waves-red modal-close">Cancelar</button>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/materialize.min.js"></script>
 </body>
