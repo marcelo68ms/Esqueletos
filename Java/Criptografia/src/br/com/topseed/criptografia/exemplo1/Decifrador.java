@@ -1,4 +1,4 @@
-package com.atlasproj.criptografia;
+package br.com.topseed.criptografia.exemplo1;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
