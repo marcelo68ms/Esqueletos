@@ -140,7 +140,7 @@ public class EncriptaDecriptaRSA {
 			final PublicKey chavePublica = (PublicKey) inputStream.readObject();
 			final byte[] textoCriptografado = criptografa(msgOriginal, chavePublica);
 
-			// Decriptografa a Mensagem usando a Chave Pirvada
+			// Decriptografa a Mensagem usando a Chave Prirvada
 			inputStream = new ObjectInputStream(new FileInputStream(PATH_CHAVE_PRIVADA));
 			final PrivateKey chavePrivada = (PrivateKey) inputStream.readObject();
 			final String textoPuro = decriptografa(textoCriptografado, chavePrivada);
