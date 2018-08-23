@@ -1,49 +1,44 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Projeto Final do Curso de MaterializeCSS Framework</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
-
 </head>
-
 <body>
   <header>
-    <ul id="slide-out" class="sidenav">
-      <li>
-        <div class="user-view">
-          <div class="background grey">
-          </div>
-          <img src="img/logo.png">
+    <ul id="slide-out" class="side-nav">
+      <li><div class="user-view">
+        <div class="background grey">
         </div>
-      </li>
-      <li><a href="#destaque" title="Início"></a></li>
-      <li><a href="#servicos" title="Serviços"></a></li>
-      <li><a href="#produtos" title="Produtos"></a></li>
-      <li><a href="#localizacao" title="Localização"></a></li>
-      <li><a href="#contatos" title="Contatos"></a></li>
+        <img class="slide-out-logo" src="img/logo.png" alt="">
+      </div></li>
+      <li><a href="#destaque" title="">Início</a></li>
+      <li><a href="#servicos" title="">Serviços</a></li>
+      <li><a href="#produtos" title="">Produtos</a></li>
+      <li><a href="#localizacao" title="">Localização</a></li>
+      <li><a href="#contatos" title="">Contatos</a></li>
     </ul>
 
     <div class="navbar-fixed">
       <nav>
-        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
         <div class="nav-wrapper deep-orange darken-4">
-          <a href="#destaque">
-            <img src="img/logo-full-navbar.png" alt="">
+          <a href="#destaque" class="brand-logo">
+            <img class="navbar-logo" src="img/logo-full-navbar.png" alt="">
           </a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#destaque" title="Início"></a></li>
-            <li><a href="#servicos" title="Serviços"></a></li>
-            <li><a href="#produtos" title="Produtos"></a></li>
-            <li><a href="#localizacao" title="Localização"></a></li>
-            <li><a href="#contatos" title="Contatos"></a></li>
+            <li><a href="#destaque" title="">Início</a></li>
+            <li><a href="#servicos" title="">Serviços</a></li>
+            <li><a href="#produtos" title="">Produtos</a></li>
+            <li><a href="#localizacao" title="">Localização</a></li>
+            <li><a href="#contatos" title="">Contatos</a></li>
           </ul>
         </div>
       </nav>
@@ -55,15 +50,41 @@
         <img class="responsive-img" src="img/slider.jpg" alt="">
       </figure>
     </section>
-    <section id="servicos">
 
+    <section id="servicos" class="container">
+      <div class="row">
+        <div class="col s12 m4 center hoverable servicos-link">
+          <h4>Assistencia Técnica</h4>
+          <i class="material-icons large">build</i>
+          <p class="flow-text">
+            Serviços prestados por equipe técnica qualificada com alto nível técnico e treinamento constantes.
+          </p>
+        </div>
+        <div class="col s12 m4 center hoverable servicos-link">
+          <h4>Vendas de Produtos</h4>
+          <i class="material-icons large">devices_other</i>
+          <p class="flow-text">
+            Aqui você encontrará os lançamentos e melhores produtos de tecnologia do mercado.
+          </p>
+        </div>
+        <div class="col s12 m4 center hoverable servicos-link">
+          <h4>Suporte ao Técnico</h4>
+          <i class="material-icons large">people</i>
+          <p class="flow-text">
+            A Assistência Técnica, presta suporte técnico empresarial para hardware, software, sistemas e infraestrutura.
+          </p>
+        </div>
+      </div>
     </section>
+
     <section id="produtos">
 
     </section>
+
     <section id="localizacao">
 
     </section>
+
     <section id="contatos">
 
     </section>
@@ -71,10 +92,10 @@
   <footer>
 
   </footer>
+
   <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
   <!-- Compiled and minified JavaScript -->
   <script src="js/materialize.js"></script>
   <script src="js/script.js"></script>
 </body>
-
 </html>

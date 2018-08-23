@@ -1,0 +1,31 @@
+
+.slide-out-logo{
+  width: 150px;
+  height: 150px;
+}
+
+.navbar-logo{
+  height: 56px;
+}
+
+/* DESTAQUE */
+#destaque{
+  width: 100%;
+  height: calc(100% - 64px);
+}
+
+#destaque figure{
+  width: 100%;
+  margin: 0px;
+}
+
+#destaque figure img{
+  width: 100%;
+}
+
+/* SERVIÇOS */
+
+.servicos-link:hover{
+  color: #bf360c ;
+  cursor: pointer;
+}
