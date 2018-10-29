@@ -1,6 +1,6 @@
 package main
 
-func main_2() {
+func main() {
 	resultado := somar(3, 4)
 	imprimir(resultado)
 }
