@@ -26,8 +26,8 @@
       <file leaf-file-name="main.dart" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-548">
-              <caret line="20" column="23" lean-forward="true" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+            <state relative-caret-position="-465">
+              <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -57,9 +57,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -71,12 +71,6 @@
               <item name="contador_de_pessoas" type="b2602c69:ProjectViewProjectNode" />
               <item name="contador_de_pessoas" type="462c0819:PsiDirectoryNode" />
               <item name="android" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="contador_de_pessoas" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contador_de_pessoas" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="gradle" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -178,32 +172,31 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1359" y="27" width="1922" height="1030" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4994664" weight="0.32963374" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.4994664" weight="0.32963374" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
-      <window_info id="Build Variants" order="2" sideWeight="0.50165564" side_tool="true" visible="true" weight="0.18036287" />
+      <window_info id="Build Variants" order="2" sideWeight="0.5066225" side_tool="true" visible="true" weight="0.18036287" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50053364" side_tool="true" weight="0.32963374" />
       <window_info anchor="bottom" id="Dart Analysis" order="7" sideWeight="0.4994664" weight="0.31409544" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49893278" weight="0.32963374" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.4994664" visible="true" weight="0.32963374" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4994664" visible="true" weight="0.32963374" />
       <window_info anchor="right" id="Flutter Outline" order="3" weight="0.32977587" />
       <window_info anchor="bottom" id="Logcat" order="7" sideWeight="0.49733192" weight="0.32963374" />
       <window_info id="Captures" order="2" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49834436" visible="true" weight="0.18036287" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49337748" visible="true" weight="0.18036287" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" id="Flutter Inspector" order="3" weight="0.32977587" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.4994664" weight="0.32963374" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Assistant" order="3" weight="0.2379936" />
@@ -546,8 +539,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-548">
-          <caret line="20" column="23" lean-forward="true" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+        <state relative-caret-position="-465">
+          <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
         </state>
       </provider>
     </entry>
