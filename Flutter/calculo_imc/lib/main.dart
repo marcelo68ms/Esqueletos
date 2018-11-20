@@ -17,6 +17,35 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Calculadora de IMC"),
+        centerTitle: true,
+        backgroundColor: Colors.green,
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.refresh),
+            onPressed: () {},)
+        ],
+      ),
+      backgroundColor: Colors.white,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Icon(Icons.account_circle, size: 120.0, color: Colors.green),
+          TextField(keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            labelText: "Peso (kg)",
+            labelStyle: TextStyle(color: Colors.green)
+          ),
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.green, fontSize: 25.0),
+          ),
+          TextField(keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+                labelText: "Altura (cm)",
+                labelStyle: TextStyle(color: Colors.green)
+            ),
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.green, fontSize: 25.0),
+          )
+        ],
       ),
     );
   }
