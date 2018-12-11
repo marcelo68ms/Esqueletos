@@ -7,7 +7,11 @@ const request = "https://api.hgbrasil.com/finance?format=json&key=2b474478";
 
 void main() async {
   runApp(MaterialApp(
-    home: Home()
+    home: Home(),
+    theme: ThemeData(
+      hintColor: Colors.amber,
+      primaryColor: Colors.white
+    ),
   ));
 }
 
@@ -22,6 +26,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  double dolar;
+  double euro;
+  double btc;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +63,71 @@ class _HomeState extends State<Home> {
                         textAlign: TextAlign.center,)
                   );
                 } else {
-                  return Container(color: Colors.green,)
+                  dolar = snapshot.data["results"]["currencies"]["USD"]["buy"];
+                  euro = snapshot.data["results"]["currencies"]["EUR"]["buy"];
+                  btc = snapshot.data["results"]["currencies"]["BTC"]["buy"];
+
+
+                  return SingleChildScrollView(
+                    padding: EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Icon(Icons.monetization_on, size: 150.0, color: Colors.amber,),
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: "Reais",
+                              labelStyle: TextStyle(color: Colors.amber),
+                            border: OutlineInputBorder(),
+                            prefixText: "R\$ "
+                          ),
+                          style: TextStyle(
+                            color: Colors.amber,
+                            fontSize: 25.0
+                          ),
+                        ),
+                        Divider(),
+                        TextField(
+                          decoration: InputDecoration(
+                              labelText: "Dolares",
+                              labelStyle: TextStyle(color: Colors.amber),
+                              border: OutlineInputBorder(),
+                              prefixText: "US\$ "
+                          ),
+                          style: TextStyle(
+                              color: Colors.amber,
+                              fontSize: 25.0
+                          ),
+                        ),
+                        Divider(),
+                        TextField(
+                          decoration: InputDecoration(
+                              labelText: "Euros",
+                              labelStyle: TextStyle(color: Colors.amber),
+                              border: OutlineInputBorder(),
+                              prefixText: "EU\$ "
+                          ),
+                          style: TextStyle(
+                              color: Colors.amber,
+                              fontSize: 25.0
+                          ),
+                        ),
+                        Divider(),
+                        TextField(
+                          decoration: InputDecoration(
+                              labelText: "Bitcoins",
+                              labelStyle: TextStyle(color: Colors.amber),
+                              border: OutlineInputBorder(),
+                              prefixText: "BTC "
+                          ),
+                          style: TextStyle(
+                              color: Colors.amber,
+                              fontSize: 25.0
+                          ),
+                        )
+                      ],
+                    ),
+                  );
                 }
             }
           }
