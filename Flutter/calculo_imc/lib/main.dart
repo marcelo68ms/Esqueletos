@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 
+// Método principal responsável pela execução do aplicativo
 void main() {
   runApp(MaterialApp(
     home: Home(),
   ));
 }
 
+/**
+ * Classe responsável pela chamada da montagem da interface
+ */
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
+/**
+ * Classe responsável pela inclusão dos componentes da interface
+ */
 class _HomeState extends State<Home> {
   TextEditingController pesoControler = TextEditingController();
   TextEditingController alturaControler = TextEditingController();
@@ -20,6 +27,7 @@ class _HomeState extends State<Home> {
 
   String _infoText = "Informe seus dados !";
 
+  // Método responsável por inicializar as variáveis dos campos da tela
   void _resetFields() {
     pesoControler.text = "";
     alturaControler.text = "";
@@ -28,6 +36,7 @@ class _HomeState extends State<Home> {
     });
   }
 
+  // Método responsável por efetuar literalmente o cálculo do IMC
   void _calculaIMC() {
     setState(() {
       double peso = double.parse(pesoControler.text);
@@ -49,6 +58,7 @@ class _HomeState extends State<Home> {
     });
   }
 
+  // Método responsável por agrupar os componentes gráficos do aplicativo
   @override
   Widget build(BuildContext context) {
     return Scaffold(
