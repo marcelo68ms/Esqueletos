@@ -3,8 +3,12 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
+// Constante que passa o endereço onde o serviço de cotação está exposto
 const request = "https://api.hgbrasil.com/finance?format=json&key=2b474478";
 
+/**
+ * Método principal responsável pela execução da aplicação
+ */
 void main() async {
   runApp(MaterialApp(
     home: Home(),
@@ -15,16 +19,25 @@ void main() async {
   ));
 }
 
+/**
+ * Método responsável pela carga dos dados do serviço de cotação
+ */
 Future<Map> getData() async {
   http.Response response = await http.get(request);
   return json.decode(response.body);
 }
 
+/**
+ * Classe responsável pela montagem da tela da aplicação do tipo StateFul
+ */
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
+/**
+ * Classe que agrupa os componentes visuais e suas regras
+ */
 class _HomeState extends State<Home> {
 
   final realController = TextEditingController();
@@ -36,6 +49,7 @@ class _HomeState extends State<Home> {
   double euro;
   double btc;
 
+  // Método que trabalha com as mudanças do campo em real
   void _realMudou(String texto) {
     double real = double.parse(texto);
     dolarController.text = (real/dolar).toStringAsFixed(2);
@@ -43,6 +57,7 @@ class _HomeState extends State<Home> {
     bitcoinController.text =  (real/btc).toStringAsFixed(8);
   }
 
+  // Método que trabalha com as mudanças do campo em dolar
   void _dolarMudou(String texto) {
     double dolar = double.parse(texto);
     realController.text = (dolar * this.dolar).toStringAsFixed(2);
@@ -50,6 +65,7 @@ class _HomeState extends State<Home> {
     bitcoinController.text = (dolar * this.dolar/btc).toStringAsFixed(8);
   }
 
+  // Método que trabalha com as mudanças do campo em Euro
   void _euroMudou(String texto) {
     double euro  = double.parse(texto);
     realController.text = (euro * this.euro).toStringAsFixed(2);
@@ -57,6 +73,7 @@ class _HomeState extends State<Home> {
     bitcoinController.text = (euro * this.euro/btc).toStringAsFixed(8);
   }
 
+  // Método que trabalha com as mudanças do campo em BTC
   void _bitcoinMudou(String texto) {
     double btc = double.parse(texto);
     realController.text = (btc * this.btc).toStringAsFixed(2);
@@ -64,6 +81,7 @@ class _HomeState extends State<Home> {
     euroController.text = (btc * this.btc/euro).toStringAsFixed(2);
   }
 
+  // Método responsável pela efetiva montagem visual da tela
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,6 +143,7 @@ class _HomeState extends State<Home> {
   }
 }
 
+// Método que efetua a alteração dos campos textos
 Widget buildTextField(String label, String prefix, TextEditingController control,
     Function funcao) {
   return TextField(
