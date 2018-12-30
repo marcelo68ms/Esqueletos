@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Método responsável para executar a aplicação
 void main() {
   runApp(MaterialApp(
       title: "Contador de Pessoas",
@@ -7,15 +8,22 @@ void main() {
   ));
 }
 
+/**
+ * Classe principal para a montagem da interface da aplicação
+ */
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
+/**
+ *  Classe responsável por agrupar os métodos de montagem da interface
+ */
 class _HomeState extends State<Home> {
   int _people = 0;
   String _infoText = "Pode Entrar !";
 
+  // Método responsável por apresentar a mensagem da aplicação
   void _changePeople(int delta) {
     setState(() {
       _people += delta;
@@ -27,9 +35,9 @@ class _HomeState extends State<Home> {
         _infoText = "Lotado !!";
       }
     });
-
   }
 
+  // Método responsável pela construção da interface do aplicativo
   @override
   Widget build(BuildContext context) {
     return Stack(
