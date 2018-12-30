@@ -6,9 +6,11 @@ import 'package:path_provider/path_provider.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: Home();
+    home: Home()
   ));
 }
+// Depois de escrever o Main usa-se o scaful, que a IDE gera as classes abaixo
+
 
 class Home extends StatefulWidget {
   @override
@@ -21,7 +23,39 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    // Troca o Container por Scaffold
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Lista de Tarefas"),
+        backgroundColor: Colors.blueAccent,
+        centerTitle: true,
+      ),
+      body: Column(
+        children: <Widget>[
+          Container (
+            padding: EdgeInsets.fromLTRB(17, 1, 7, 1),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(
+                        labelText: "Nova tarefa",
+                        labelStyle: TextStyle(color: Colors.blueAccent)
+                    ),
+                  ),
+                ),
+                RaisedButton(
+                  color: Colors.blueAccent,
+                  child: Text("Add"),
+                  textColor: Colors.white,
+                  onPressed: () {},
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   Future<File> _getFile() async {
