@@ -170,7 +170,7 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
-      <window_info id="Build Variants" order="2" sideWeight="0.5115894" side_tool="true" visible="true" weight="0.18036287" />
+      <window_info id="Build Variants" order="2" sideWeight="0.5116537" side_tool="true" visible="true" weight="0.18036287" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50053364" side_tool="true" weight="0.32963374" />
       <window_info anchor="bottom" id="Dart Analysis" order="7" sideWeight="0.4994664" weight="0.31409544" />
       <window_info anchor="right" id="Flutter Outline" order="3" weight="0.32977587" />
@@ -186,11 +186,11 @@
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Flutter Performance" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49893278" visible="true" weight="0.32963374" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49893278" weight="0.32963374" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4994664" weight="0.32963374" />
       <window_info id="Captures" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4884106" visible="true" weight="0.18036287" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48834628" visible="true" weight="0.18036287" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" id="Flutter Inspector" order="3" weight="0.32977587" />
