@@ -2,6 +2,13 @@ package com.topseed.cursomc.resources.exceptions;
 
 import java.io.Serializable;
 
+/**
+ * Classe responsável por ser a base de tratamento de erros personalizados
+ * Essa classe possui as informações de exposição das mensagens padrões
+ * 
+ * @author marcelo
+ *
+ */
 public class StandardError implements Serializable {
 	private static final long serialVersionUID = 1L;
 

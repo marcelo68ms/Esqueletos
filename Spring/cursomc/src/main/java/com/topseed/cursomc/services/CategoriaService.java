@@ -16,28 +16,57 @@ import com.topseed.cursomc.repositories.CategoriaRepository;
 import com.topseed.cursomc.services.exceptions.DataIntegrityException;
 import com.topseed.cursomc.services.exceptions.ObjectNotFoundException;
 
+/**
+ * Classe responsável pelas regras de negócio para as Categorias
+ * 
+ * @author marcelo
+ *
+ */
 @Service
 public class CategoriaService {
 
 	@Autowired
 	private CategoriaRepository rep;
 	
+	/**
+	 * Efetua a busca de uma categoria
+	 * 
+	 * @param id
+	 * @return objeto Categoria
+	 */
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
  	}
 	
+	/**
+	 * Insere uma Categoria no banco de dados
+	 * 
+	 * @param obj
+	 * @return
+	 */
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
 		return rep.save(obj);
 	}
 	
+	/**
+	 * Atualiza uma Categoria no banco de dados
+	 * 
+	 * @param obj
+	 * @return
+	 */
 	public Categoria update(Categoria obj) {
 		find(obj.getId());
 		return rep.save(obj);
 	}
 	
+	/**
+	 * Apaga uma Categoria de uma ID específica
+	 * 
+	 * @param id
+	 */
 	public void delete(Integer id) {
 		find(id);
 		try {
@@ -47,15 +76,35 @@ public class CategoriaService {
 		}
 	}
 	
+	/**
+	 * Efetua a busca de Categorias, retornando tudo numa lista geral
+	 * 
+	 * @return
+	 */
 	public List<Categoria> findAll(){
 		return rep.findAll();
 	}
 	
+	/**
+	 * Efetua uma busca de Categorias paginadas   
+	 *
+	 * @param page
+	 * @param linesPerPage
+	 * @param orderBy
+	 * @param direction
+	 * @return
+	 */
 	public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return rep.findAll(pageRequest);
 	}
 	
+	/**
+	 * Transforma o DTO em Categoria
+	 * 
+	 * @param obj
+	 * @return
+	 */
 	public Categoria fromDTO(CategoriaDTO obj) {
 		return new Categoria(obj.getId(), obj.getNome());
 	}

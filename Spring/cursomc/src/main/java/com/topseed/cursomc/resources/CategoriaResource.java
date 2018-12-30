@@ -21,6 +21,12 @@ import com.topseed.cursomc.domain.Categoria;
 import com.topseed.cursomc.dto.CategoriaDTO;
 import com.topseed.cursomc.services.CategoriaService;
 
+/**
+ * Classe responsável pelo controle de serviços da Categoria
+ * 
+ * @author marcelo
+ *
+ */
 @RestController
 @RequestMapping(value="/categorias")
 public class CategoriaResource {
@@ -28,12 +34,24 @@ public class CategoriaResource {
 	@Autowired
 	CategoriaService service;
 	
+	/**
+	 * Esse método é responsável pela busca de Categorias por um ID específico
+	 * 
+	 * @param id 
+	 * @return a categoria relacionado com o id
+	 */
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public ResponseEntity<Categoria> find(@PathVariable Integer id) {
 		Categoria obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
+	/**
+	 * Método que efetiva a gravação de Categorias no banco baseado no DTO preenchido
+	 * 
+	 * @param objDTO 
+	 * @return mensagem de HTTP de retorno
+	 */
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDTO) {
 		Categoria obj = service.fromDTO(objDTO);
@@ -42,6 +60,12 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	/**
+	 * Método que efetiva a alteração de informações da Categoria específica
+	 * @param objDTO
+	 * @param id
+	 * @return mensagem de HTTP de retorno
+	 */
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO objDTO, @PathVariable Integer id) {
 		Categoria obj = service.fromDTO(objDTO);
@@ -50,12 +74,23 @@ public class CategoriaResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	/**
+	 * Método responsável por apagar uma categoria específica 
+	 *
+	 * @param id
+	 * @return mensagem de HTTP de retorno
+	 */
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();		
 	}
 	
+	/**
+	 * Efetua a listagem de todas as categorias
+	 * 
+	 * @return uma lista de categorias
+	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<CategoriaDTO>> findAll() {
 		List<Categoria> listObj = service.findAll();
@@ -64,6 +99,15 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
+	/**
+	 * Lista todas as Categorias de forma paginada 
+	 * 
+	 * @param page
+	 * @param linesPerPage
+	 * @param orderBy
+	 * @param direction
+	 * @return
+	 */
 	@RequestMapping(value="/page", method=RequestMethod.GET)
 	public ResponseEntity<Page<CategoriaDTO>> findPage(@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 

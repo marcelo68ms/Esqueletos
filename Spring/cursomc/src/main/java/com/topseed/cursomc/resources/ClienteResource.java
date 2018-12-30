@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.topseed.cursomc.domain.Cliente;
 import com.topseed.cursomc.services.ClienteService;
 
+/**
+ * Classe responsável pelo controle de Serviço do Cliente
+ * 
+ * @author marcelo
+ *
+ */
 @RestController
 @RequestMapping(value="/clientes")
 public class ClienteResource {
@@ -17,6 +23,12 @@ public class ClienteResource {
 	@Autowired
 	ClienteService service;
 	
+	/**
+	 * Método responsável pela busca de um cliente específico
+	 * 
+	 * @param id
+	 * @return mensagem de HTTP de retorno
+	 */
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public ResponseEntity<Cliente> find(@PathVariable Integer id) {
 		Cliente obj = service.find(id);
