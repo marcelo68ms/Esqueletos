@@ -23,6 +23,20 @@ class _HomeState extends State<Home> {
 
   List _toDoList = [];
 
+
+  // o <CTRL>+"O" abre a lista a qual escolhi esse método
+  @override
+  void initState() {
+    super.initState();
+    
+    _readData().then((data) {
+      // o setState é quem efetua a atualização da tela, mantendo ela viva
+      setState(() {
+        _toDoList = json.decode(data);
+      });
+    });
+  }
+
   void _addToDo() {
     setState(() {
       Map<String, dynamic> newToDo = Map();
@@ -30,6 +44,7 @@ class _HomeState extends State<Home> {
       _toDoController.text = "";
       newToDo["ok"] = false;
       _toDoList.add(newToDo);
+      _saveData();
     });
   }
 
@@ -80,6 +95,7 @@ class _HomeState extends State<Home> {
                     onChanged: (c) {
                       setState(() {
                         _toDoList[index] ["ok"] = c;
+                        _saveData();
                       });
                     },
                   );
