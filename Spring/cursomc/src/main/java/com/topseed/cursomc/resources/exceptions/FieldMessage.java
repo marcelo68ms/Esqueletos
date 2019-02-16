@@ -9,7 +9,7 @@ public class FieldMessage implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String fielName;
+	private String fieldName;
 	private String message;
 	
 	public FieldMessage() {
@@ -17,18 +17,18 @@ public class FieldMessage implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public FieldMessage(String fielName, String message) {
+	public FieldMessage(String fieldName, String message) {
 		super();
-		this.fielName = fielName;
+		this.fieldName = fieldName;
 		this.message = message;
 	}
 
 	public String getFielName() {
-		return fielName;
+		return fieldName;
 	}
 
-	public void setFielName(String fielName) {
-		this.fielName = fielName;
+	public void setFielName(String fieldName) {
+		this.fieldName = fieldName;
 	}
 
 	public String getMessage() {
