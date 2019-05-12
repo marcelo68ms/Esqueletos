@@ -219,4 +219,4 @@ build/
 
 # Directory created by dartdoc
 doc/api/
-
+!/home/marcelo/Trabalho/Empresas/Esqueletos/Dart
