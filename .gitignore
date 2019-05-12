@@ -58,7 +58,7 @@ buildNumber.properties
 # Eclipse
 
 .metadata
-bin/
+Java/Criptografia/bin/
 tmp/
 *.tmp
 *.bak
@@ -150,7 +150,7 @@ nbdist/
 *.class
 
 # Generated files
-bin/
+Java/Criptografia/bin/
 gen/
 out/
 
@@ -219,4 +219,4 @@ build/
 
 # Directory created by dartdoc
 doc/api/
-!/home/marcelo/Trabalho/Empresas/Esqueletos/Dart
+
