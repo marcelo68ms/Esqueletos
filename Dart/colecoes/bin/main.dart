@@ -1,6 +1,8 @@
 
 import 'dart:collection';
 
+import 'dart:io';
+
 main(List<String> arguments) {
 
   // Coleção - List 
@@ -58,4 +60,28 @@ main(List<String> arguments) {
   ddd[13] = 'Litoral SP';
   ddd[21] = 'Rio de Janeiro';
   print(ddd);
+
+  Map<String, dynamic> pessoa = Map();
+  pessoa['nome'] = 'Mauro';
+  pessoa['idade'] = 12;
+  pessoa['altura'] = 1.53;
+  print(pessoa);
+
+  // Não permite repetições de chaves
+  Map<String, String> pessoas = new Map<String, String>();
+  pessoas.putIfAbsent('pai', () => 'Marcelo');
+  pessoas.putIfAbsent('mae', () => 'Alessandra');
+  pessoas.putIfAbsent('filho', () => 'Mauro');
+  print(pessoas);
+
+  print('Chaves do mapa = ${pessoas.keys}');
+  print('Valores do Mapa = ${pessoas.values}');
+  print('Apenas o pai = ${pessoas['pai']}');
+
+  //-----------------------------------------
+  // Lista Interativa
+  List gente = ['Marcelo', 'Mauro', 'Alessandra'];
+  print('Informe um Indice');
+  int indiceGente = int.parse(stdin.readLineSync());
+  print(gente[indiceGente]);
 }
