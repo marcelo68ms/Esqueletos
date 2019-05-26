@@ -12,4 +12,14 @@ main(List<String> arguments) {
   } else {
     print('Você é maior de idade');
   }
+
+  // Escopo de variável
+  if (idade == 43) {
+    print('Você tem 43 anos !');
+  } else {
+    // essa variável só é vista dentro desse parênteses
+    bool temDebito = true;
+    print('Você tem $idade anos e ${temDebito ? '' : 'não '}tem dívidas');
+  }
+
 }
