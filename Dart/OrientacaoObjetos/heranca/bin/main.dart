@@ -1,4 +1,5 @@
 import 'package:heranca/cliente.dart';
+import 'package:heranca/funcionario.dart';
 
 main() {
   
@@ -13,7 +14,14 @@ main() {
   print('Endereço: ${cliente1.cpf}');
   cliente1.saida();
 
-    print('--------------- Dados do Cliente -----------------');
-
-
+  print('--------------- Dados do Funcionário -----------------');
+  var funcionario = Funcionario();
+  funcionario.nome = 'Gerente do Banco';
+  funcionario.nomeMae = 'Aberlinda';
+  funcionario.fone = '6784-8373';
+  
+  funcionario.entrada();
+  print('Nome: ${funcionario.nome}');
+  print('Nome da Mãe: ${funcionario.nomeMae}');
+  funcionario.saida();
 }
