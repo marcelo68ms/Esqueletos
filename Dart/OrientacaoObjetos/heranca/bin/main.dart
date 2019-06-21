@@ -7,6 +7,7 @@ main() {
   var cliente1 = Cliente();
   cliente1.nome = 'Marcelo Santos';
   cliente1.cpf = '070.108.388-36';
+  assert(cliente1.cpf.length == 14, 'O CPF precisa conter 14 dígitos');
   cliente1.endereco = 'Rua José Revel, 197';
 
   cliente1.entrada();
