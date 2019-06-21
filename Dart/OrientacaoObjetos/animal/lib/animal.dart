@@ -2,7 +2,7 @@ class Animal {
   String _nome = '';
   int _idade = 0;
   String _pelo = '';
- 
+   
  // Construtores
   Animal(this._nome, this._idade, this._pelo);
 
@@ -13,7 +13,7 @@ class Animal {
   int get idade => _idade;
   set idade(int valor) => _idade = valor;
 
-  String get pelo => _pelo
+  String get pelo => _pelo;
   set pelo(String value) => _pelo = value;
 
   // Métodos da classe
