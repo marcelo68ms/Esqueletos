@@ -3,7 +3,6 @@ import 'package:heranca/funcionario.dart';
 import 'package:heranca/gerente.dart';
 
 main() {
-  
   print('--------------- Dados do Cliente -----------------');
   var cliente1 = Cliente();
   cliente1.nome = 'Marcelo Santos';
@@ -37,4 +36,6 @@ main() {
   print('Nome: ${gerente1.nome}');
   print('Senha: ${gerente1.senha}');
   gerente1.saida(); 
+  print('--------------------------------------------------');
+
 }
