@@ -1,5 +1,25 @@
-import 'package:sistema_arquivos/sistema_arquivos.dart' as sistema_arquivos;
+import 'dart:io';
 
-main(List<String> arguments) {
-  print('Hello world: ${sistema_arquivos.calculate()}!');
+main() {
+  String path = '/home/marcelo';
+  Directory dir = Directory(path);
+
+  if(dir.existsSync()) {
+    print('A pasta Existe !!');
+  } else {
+    print('A pasta não existe !!');
+  }
+
+  print('\n\n-----------------------------------\n\n');
+
+  // Como criar e remover um diretório no sistema de arquivos temporários
+
+  dir = Directory.systemTemp.createTempSync();
+
+  print(dir.path);
+
+  if(dir.existsSync()) {
+    print('Removendo a pasta ${dir.path}');
+    dir.deleteSync();
+  }
 }
