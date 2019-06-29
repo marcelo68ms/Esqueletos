@@ -44,12 +44,21 @@ main() {
   print('Modo de Pemissão: ${stat.mode}');
   print('Tamanho: ${stat.size} bytes.\n');
 
+  
+
+
   print('-----------------------------------------------');
 
-  // Ler dados de um arquivo texto
   File arquivo = File(dir.path + '/meu_arquivo.txt');
+  
+  // Escrevendo dados em um arquivo texto
+  escreverArquivo(arquivo);
+
+  // Ler dados de um arquivo texto
   lerArquivo(arquivo);
+
   });
+
 }
 
 void lerArquivo(File arquivo) {
@@ -65,4 +74,11 @@ void lerArquivo(File arquivo) {
   List valores = arquivo.readAsBytesSync();
   valores.forEach((valor) => print(valor));
 
+}
+
+void escreverArquivo(File arquivo) {
+  RandomAccessFile raf = arquivo.openSync(mode: FileMode.write);
+  raf.writeStringSync('Olá mundo !! \r\n Como você está hoje ?\r\n');
+  raf.flushSync();
+  raf.closeSync();
 }
