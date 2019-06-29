@@ -1,0 +1,2 @@
+Estamos efetuando um teste no sistema de leitura do dart
+para arquivos em texto.
