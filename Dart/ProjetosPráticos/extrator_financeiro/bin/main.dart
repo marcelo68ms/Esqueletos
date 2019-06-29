@@ -10,11 +10,15 @@ void menu() {
   print('---- Inicio ----');
   print('\nSelecione uma das opções abaixo:');
   print('1 - Ver a cotação de hoje');
+  print('2 - Registrar a cotação de hoje');
 
   String opcao = stdin.readLineSync();
   switch (int.parse(opcao)) {
     case 1:
-      hoje();
+      cotacao();
+      break;
+    case 2:
+      registrar();
       break;
     default:
       {
@@ -25,7 +29,7 @@ void menu() {
   }
 }
 
-hoje() async {
+cotacao() async {
   var data = await getData();
   print('--------- HG Brasil - Cotação --------');
   print('${data['date']} -> ${data['data']}');
@@ -56,4 +60,42 @@ Future getData() async {
 String agora() {
   var agora = DateTime.now();
   return '${agora.day.toString().padLeft(2, '0')}/${agora.month.toString().padLeft(2, '0')}/${agora.year.toString()}';
+}
+
+registrar() async {
+  var hgData = await getData();
+  dynamic fileData = lerArquivo();
+
+  fileData = (fileData != null && fileData.length > 0 ? json.decode(fileData) : List());
+
+  fileData.forEach((data) {
+    if(data['date'] == agora())
+      existe = false;
+  });
+
+  if(!existe) {
+    fileData.add({"date": agora(), "data": "${hgData['data']}"});
+
+    Directory dir = Directory.current;
+    File arquivo = File(dir.path + '/cotacao.txt');
+    RandomAccessFile raf = arquivo.openSync(mode: FileMode.write);
+    raf.writeStringSync(json.encode(fileData).toString());
+    raf.flushSync();
+    raf.closeSync();
+    
+    print('\n\n-------------- Dados salvos --------------');
+  } else {
+    print('\n\n ------------- Registro não adicionado, já existe dados de hoje --------------');
+  }
+}
+
+String lerArquivo() {
+  Directory dir = Directory.current;
+  File arquivo = File(dir.path + '/cotacao.txt');
+
+  if(!arquivo.existsSync()) {
+    print('Arquivo Inexiste');
+    return null;
+  } 
+  return arquivo.readAsStringSync();
 }
