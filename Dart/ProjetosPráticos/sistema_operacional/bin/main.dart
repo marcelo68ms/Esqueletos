@@ -16,5 +16,11 @@ main() {
   });
 
   print('\n\n------------------------- Processos ------------------------');
-    
+  Process.run('ls',['-l']).then((ProcessResult results) {
+    print(results.stdout);
+    print('Código de saída: ${results.exitCode} ');
+  });
+
+  print('\n\n-------------------------------------------------------------');
+  
 }
