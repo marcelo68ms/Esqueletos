@@ -1,5 +1,6 @@
 
 import 'dart:io';
+import 'dart:convert';
 
 main() {
   print('SO: ${Platform.operatingSystem} ${Platform.version}');
@@ -22,5 +23,13 @@ main() {
   });
 
   print('\n\n-------------------------------------------------------------');
-  
+  // Específico para Linux/Mac
+  Process.start('cat', []).then((Process processo) {
+    // Transformar a saída em Texto
+    processo.stdout.transform(utf8.decoder).listen((dados) {
+      print(dados);
+    });
+    processo.stdin.write('Olá mundo');
+    Process.killPid(processo.pid);
+  });
 }
