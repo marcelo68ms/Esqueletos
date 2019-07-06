@@ -11,6 +11,7 @@ void menu() {
   print('\nSelecione uma das opções abaixo:');
   print('1 - Ver a cotação de hoje');
   print('2 - Registrar a cotação de hoje');
+  print('3 - Ver a lista de cotações registradas');
 
   String opcao = stdin.readLineSync();
   switch (int.parse(opcao)) {
@@ -19,6 +20,9 @@ void menu() {
       break;
     case 2:
       registrar();
+      break;
+    case 3:
+      listarDados();
       break;
     default:
       {
@@ -65,7 +69,8 @@ String agora() {
 registrar() async {
   var hgData = await getData();
   dynamic fileData = lerArquivo();
-
+  bool existe = false;
+  
   fileData = (fileData != null && fileData.length > 0 ? json.decode(fileData) : List());
 
   fileData.forEach((data) {
@@ -98,4 +103,16 @@ String lerArquivo() {
     return null;
   } 
   return arquivo.readAsStringSync();
+}
+
+void listarDados() {
+  dynamic fileData = lerArquivo();
+  fileData = (fileData != null && fileData.length > 0 ? json.decode(fileData) : List());
+
+  print('\n\n------------------ Listagem dos Dados --------------------------');
+
+  fileData.forEach((data) {
+    print('${data['date']} -> ${data['data']} ');
+  } 
+  );
 }
