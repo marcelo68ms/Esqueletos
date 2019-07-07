@@ -1,4 +1,7 @@
+// Definição de uma Classe
 class Animal {
+
+  // Relação de Atributos da classe. Iniciando com "_" indica que são privados
   String _nome = '';
   int _idade = 0;
   String _pelo = '';

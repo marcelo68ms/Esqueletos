@@ -4,6 +4,7 @@ main() {
   mostraResultado(perguntaUsuario());
 }
 
+// Função que captura informações do prompt
 int perguntaUsuario() {
   print('Informe um número');
   return int.parse(stdin.readLineSync(),onError: (String err) {
@@ -12,6 +13,7 @@ int perguntaUsuario() {
   });
 }
 
+// Função que mostra os números digitados e ainda mostra a metade do loop
 void mostraResultado(int max) {
   double half = max / 2;
 

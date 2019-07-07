@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 
+// Classe principal do Dart
 main() {
   menu();
 }
 
+// Função que monta o Menu de Apresentação da aplicação
 void menu() {
   print('---- Inicio ----');
   print('\nSelecione uma das opções abaixo:');
@@ -13,6 +15,7 @@ void menu() {
   print('2 - Registrar a cotação de hoje');
   print('3 - Ver a lista de cotações registradas');
 
+  // Captura as informações vindas do prompt
   String opcao = stdin.readLineSync();
   switch (int.parse(opcao)) {
     case 1:
@@ -33,14 +36,18 @@ void menu() {
   }
 }
 
+// Função Captura a cotação das moedas de forma Assincrona
+// Sempre que chamamos uma função assincrona, nossa função TAMBÉM tem que ser assincrona
 cotacao() async {
   var data = await getData();
   print('--------- HG Brasil - Cotação --------');
   print('${data['date']} -> ${data['data']}');
 }
 
+// Nessa função assincrona o retorno TEM QUE SER 'Future'
 Future getData() async {
   String url = 'https://api.hgbrasil.com/finance?key=2b474478';
+  // Executa a o consumo de um serviço REST
   http.Response resposta = await http.get(url);
   if (resposta.statusCode == 200) {
     var dado = json.decode(resposta.body)['results']['currencies'];
@@ -61,11 +68,13 @@ Future getData() async {
   }
 }
 
+// Retorno a data e hora atual
 String agora() {
   var agora = DateTime.now();
   return '${agora.day.toString().padLeft(2, '0')}/${agora.month.toString().padLeft(2, '0')}/${agora.year.toString()}';
 }
 
+// Grava as informações capturadas do serviço em um arquivo
 registrar() async {
   var hgData = await getData();
   dynamic fileData = lerArquivo();
@@ -94,6 +103,7 @@ registrar() async {
   }
 }
 
+// Função que lê o arquivo onde estão gravadas as cotações
 String lerArquivo() {
   Directory dir = Directory.current;
   File arquivo = File(dir.path + '/cotacao.txt');
@@ -105,6 +115,7 @@ String lerArquivo() {
   return arquivo.readAsStringSync();
 }
 
+// Função que lista as informações vindas do arquivo para a tela
 void listarDados() {
   dynamic fileData = lerArquivo();
   fileData = (fileData != null && fileData.length > 0 ? json.decode(fileData) : List());

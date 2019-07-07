@@ -29,9 +29,12 @@ void botaoCriado() {
   print('Botão criado ! \n');
 }
 
+// Função que cria o botão
 void criarBotao(String texto, Function criadoFunc, {String cor, double largura}) {
   print(texto);
+  // Se a cor não for definida, o botão será preto
   print(cor ?? 'Preto');
+  // Se a largura não for definida a mesma será 10
   print(largura ?? 10);
 
   criadoFunc();

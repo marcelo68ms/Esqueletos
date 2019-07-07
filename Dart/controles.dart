@@ -1,4 +1,5 @@
-// Método principal que é executado inicialmente
+main() {
+  // Método principal que é executado inicialmente
   var sexo = 'F';
   // No if o == é o igual
   if (sexo == 'F') {
