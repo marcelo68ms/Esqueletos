@@ -1,5 +1,4 @@
-
-
+// Exemplo usado para efetuar testes no seu código
 main() {
   
   try {

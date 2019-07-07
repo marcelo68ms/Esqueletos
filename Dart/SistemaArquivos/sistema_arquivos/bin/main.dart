@@ -1,9 +1,11 @@
 import 'dart:io';
 
+// Exemplo sobre Manipulação de diretórios e arquivos
 main() {
   String path = '/home/marcelo';
-  Directory dir = Directory(path);
 
+  // Busca um diretório específico
+  Directory dir = Directory(path);
   if(dir.existsSync()) {
     print('A pasta Existe !!');
   } else {
@@ -13,7 +15,6 @@ main() {
   print('-----------------------------------------------');
 
   // Como criar e remover um diretório no sistema de arquivos temporários
-
   dir = Directory.systemTemp.createTempSync();
 
   print(dir.path);
@@ -44,9 +45,6 @@ main() {
   print('Modo de Pemissão: ${stat.mode}');
   print('Tamanho: ${stat.size} bytes.\n');
 
-  
-
-
   print('-----------------------------------------------');
 
   File arquivo = File(dir.path + '/meu_arquivo.txt');
@@ -61,6 +59,7 @@ main() {
 
 }
 
+// Função que lê informações de um arquivo
 void lerArquivo(File arquivo) {
   if (!arquivo.existsSync()) {
     print('Aquivo não existe');
@@ -76,6 +75,7 @@ void lerArquivo(File arquivo) {
 
 }
 
+// Função que escreve informações em um arquivo
 void escreverArquivo(File arquivo) {
   RandomAccessFile raf = arquivo.openSync(mode: FileMode.write);
   raf.writeStringSync('Olá mundo !! \r\n Como você está hoje ?\r\n');
