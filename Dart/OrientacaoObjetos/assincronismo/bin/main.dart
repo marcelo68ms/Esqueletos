@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'dart:io';
 
 int contator = 0;
@@ -23,6 +22,8 @@ main() {
     }).catchError(() => print('Ocorreu um erro !!')).whenComplete(() => raf.close());
   });
   print('-------------------------------------------------');
+
+  exemploAwait();
 }
 
 // Função que efetua a espera e retorna a hora atual
@@ -38,4 +39,24 @@ void finalTempo(Timer tempo) {
 String getTempo() {
   DateTime dt = DateTime.now();
   return dt.toString();
+}
+
+// Função usando a técnica de Await
+void exemploAwait() async {
+  print('Começou  :D');
+  incrementaArquivo();
+
+  print(await lerArquivo());
+  print('---------------------------------------');
+} 
+
+void incrementaArquivo() {
+  File arquivo = File(Directory.current.path + '/teste.txt');
+  DateTime dt = DateTime.now();
+  arquivo.writeAsString(dt.toString() + '\r\n', mode: FileMode.append);
+}
+
+Future<String> lerArquivo() {
+  File arquivo = File(Directory.current.path + '/teste.txt');
+  return arquivo.readAsString();
 }
