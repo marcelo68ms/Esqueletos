@@ -1,5 +1,14 @@
-import 'package:servidor_socket_tcp/servidor_socket_tcp.dart' as servidor_socket_tcp;
+import 'dart:convert';
+import 'dart:io';
 
-main(List<String> arguments) {
-  print('Hello world: ${servidor_socket_tcp.calculate()}!');
+main() async {
+  var serverSocket = await ServerSocket.bind('127.0.0.1', 3000);
+  print('Escutando mensagens na porta 3000');
+
+  await for (var socket in serverSocket) {
+    socket.listen((List valores){
+      print('${socket.remoteAddress}:${socket.remotePort} = ${utf8.decode(valores)}');
+      
+    });
+  }
 }
