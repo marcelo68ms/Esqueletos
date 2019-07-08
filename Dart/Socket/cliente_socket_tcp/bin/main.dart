@@ -1,5 +1,14 @@
-import 'package:cliente_socket_tcp/cliente_socket_tcp.dart' as cliente_socket_tcp;
+import 'dart:io';
 
-main(List<String> arguments) {
-  print('Hello world: ${cliente_socket_tcp.calculate()}!');
+main() async {
+  bool loop = true;
+  var socket = await Socket.connect('127.0.0.1', 3000);
+
+  while(loop) {
+    print('Conectado! Pode digitar !');
+    String texto = stdin.readLineSync();
+    socket.write(texto);
+  }
+  await socket.close();
+  exit(0);
 }
