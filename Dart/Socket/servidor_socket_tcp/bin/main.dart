@@ -8,7 +8,6 @@ main() async {
   await for (var socket in serverSocket) {
     socket.listen((List valores){
       print('${socket.remoteAddress}:${socket.remotePort} = ${utf8.decode(valores)}');
-      
     });
   }
 }
