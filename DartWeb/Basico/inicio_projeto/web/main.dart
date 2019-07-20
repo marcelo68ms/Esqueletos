@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:html';
-
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -16,5 +15,10 @@ void main() {
     var body = json.decode(response.body);
     print(body);
 
+    // Insere as informações na página
+    (querySelector('#uf') as InputElement).value = body["uf"];
+    (querySelector('#cid') as InputElement).value = body["localidade"];
+    (querySelector('#bairro') as InputElement).value = body["bairro"];
+    (querySelector('#rua') as InputElement).value = body["logradouro"];
   });
 }
