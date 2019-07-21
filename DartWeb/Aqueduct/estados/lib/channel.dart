@@ -1,4 +1,5 @@
 import 'estados.dart';
+import 'package:estados/controller/estados_controller.dart';
 
 /// This type initializes an application.
 ///
@@ -30,8 +31,8 @@ class EstadosChannel extends ApplicationChannel {
     // See: https://aqueduct.io/docs/http/request_controller/
     router
       .route("/estados/[:uf]")
+//      .route("/estados")
       .link(() => EstadosController()); 
-    
 
     return router;
   }
