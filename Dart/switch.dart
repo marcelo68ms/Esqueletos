@@ -1,3 +1,5 @@
+// Exemplo de uso do Switch
+// Sempre precisamos do Break
 void main() {
   String status = 'D';
   switch (status) {
