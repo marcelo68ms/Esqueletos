@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:html';
 import 'package:http/http.dart' as http;
-import "package:dialog/dialog.dart";
+import 'package:dialog/dialog.dart';
 
 void main() {
   List cidades = List();
