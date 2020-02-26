@@ -1,0 +1,3 @@
+class Administrador {
+  String senha;
+}
