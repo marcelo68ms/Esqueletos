@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imc/blocs/imc.bloc.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -6,6 +7,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _State extends State<HomePage> {
+  var bloc = new ImcBloc();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +20,7 @@ class _State extends State<HomePage> {
           Padding(
             padding: EdgeInsets.all(20),
             child: TextFormField(
+              controller: bloc.heightCtrl,
               decoration: InputDecoration(
                 labelText: "Altura (cm)",
               ),
@@ -26,6 +30,7 @@ class _State extends State<HomePage> {
           Padding(
             padding: EdgeInsets.all(20),
             child: TextFormField(
+              controller: bloc.weightCtrl,
               decoration: InputDecoration(
                 labelText: "Peso (kg)",
               ),
@@ -33,12 +38,13 @@ class _State extends State<HomePage> {
             ),
           ),
           Padding(
-              padding: EdgeInsets.all(20),
-              child: Text(
-                "Você está fora de forma !",
-                textAlign: TextAlign.center,
-              ),),
-              Padding(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              bloc.result,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Padding(
             padding: EdgeInsets.all(20),
             child: FlatButton(
               color: Theme.of(context).primaryColor,
@@ -46,12 +52,15 @@ class _State extends State<HomePage> {
                 "Calcular",
                 style: TextStyle(
                   color: Colors.white,
-                )
-              )
-              onPressed: () {},
+                ),
               ),
+              onPressed: () {
+                setState(() {
+                  bloc.calculate();
+                });
+              },
+            ),
           ),
-
         ],
       ),
     );
