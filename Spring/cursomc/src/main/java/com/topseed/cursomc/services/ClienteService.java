@@ -18,6 +18,7 @@ import com.topseed.cursomc.domain.enums.TipoCliente;
 import com.topseed.cursomc.dto.ClienteDTO;
 import com.topseed.cursomc.dto.ClienteNewDTO;
 import com.topseed.cursomc.repositories.ClienteRepository;
+import com.topseed.cursomc.repositories.EnderecoRepository;
 import com.topseed.cursomc.services.exceptions.DataIntegrityException;
 import com.topseed.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -32,6 +33,9 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteRepository rep;
+	
+	@Autowired
+	private EnderecoRepository endRep;
 	
 	/**
 	 * Efetua a busca de Cliente por um id
@@ -55,7 +59,9 @@ public class ClienteService {
 	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
-		return rep.save(obj);
+		rep.save(obj);
+		endRep.saveAll(obj.getEnderecos());		
+		return obj;
 	}
 		
 	/**
