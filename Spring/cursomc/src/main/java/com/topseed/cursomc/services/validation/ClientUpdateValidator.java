@@ -16,8 +16,6 @@ import com.topseed.cursomc.dto.ClienteDTO;
 import com.topseed.cursomc.repositories.ClienteRepository;
 import com.topseed.cursomc.resources.exceptions.FieldMessage;
 
-import aj.org.objectweb.asm.Handle;
-
 public class ClientUpdateValidator implements ConstraintValidator<ClienteUpdate, ClienteDTO> {
 
 	@Autowired
