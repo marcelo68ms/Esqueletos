@@ -44,6 +44,9 @@ public class PedidoService {
 	@Autowired
 	private ClienteService cliente;
 	
+	@Autowired
+	private EmailService emailService;
+	
 	/**
 	 * Busca de um único Pedido, baseado no seu ID
 	 * 
@@ -78,6 +81,9 @@ public class PedidoService {
 		}
 		
 		itemPedidoRepository.saveAll(obj.getItens());
+		
+		emailService.sendOrderConfirmationEmail(obj);
+		
 		return obj;
 	}
 }
