@@ -1,3 +1,4 @@
+// Exemplo Simples de desenho de classe
 class Pessoa {
   String nome;
   int idade;

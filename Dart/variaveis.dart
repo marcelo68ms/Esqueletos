@@ -1,3 +1,4 @@
+// Temos aqui os tipos de variáveis permitidos ao Dart
 void main() {
   String nome = "Marcelo";
   nome = "Santos";
