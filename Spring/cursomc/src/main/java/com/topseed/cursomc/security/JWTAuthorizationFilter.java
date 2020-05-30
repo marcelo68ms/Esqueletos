@@ -26,6 +26,13 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 	private JWTUtil jwtUtil;
 	private UserDetailsService userDatailsService;
 	
+	/**
+	 * Construtor da classe 
+	 *
+	 * @param authenticationManager
+	 * @param jwtUtil
+	 * @param userDatailsService
+	 */
 	public JWTAuthorizationFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil, UserDetailsService userDatailsService) {
 		super(authenticationManager);
 		
@@ -33,10 +40,16 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 		this.userDatailsService = userDatailsService;
 	}
 
+	/**
+	 * Reescrita do método que faz a checagem do Token para saber quem é o usuário
+	 * e qual é a sua autorização
+	 * 
+	 */
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		
+		// Busca o header do serviço JSON com a Authorization
 		String header = request.getHeader("Authorization");
 		
 		if (header != null && header.startsWith("Bearer ")) {
@@ -48,6 +61,12 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 		chain.doFilter(request, response);		
 	}
 
+	/**
+	 * Método que retorna o usuário e seus perfils
+	 * 
+	 * @param token
+	 * @return
+	 */
 	private UsernamePasswordAuthenticationToken getAuthentication(String token) {
 		if (jwtUtil.tokenValido(token) ) {
 			String username = jwtUtil.getUsername(token);
@@ -56,6 +75,4 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 		}
 		return null;
 	}
-
-	
 }

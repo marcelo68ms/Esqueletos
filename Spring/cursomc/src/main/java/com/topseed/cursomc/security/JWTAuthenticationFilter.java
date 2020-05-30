@@ -41,7 +41,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		this.jwtUtil = jwtUtil;
 	
 	}
-		
+	
+	/**
+	 * Retorna a credencial do usuário na autenticação na "Tentativa de Autenticação"
+	 * 
+	 */
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) {
 		
@@ -57,12 +61,22 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		}
 	}
 
+	/**
+	 * Houve o sucesso da Autenticação do usuário
+	 * 
+	 * @param req
+	 * @param res
+	 * @param chain
+	 * @param auth
+	 */
 	public void successAuthentication(HttpServletRequest req, HttpServletResponse res,
 										FilterChain chain, Authentication auth) {
 		String username = ((UserSS) auth.getPrincipal()).getUsername();
 		String token = jwtUtil.generateToken(username);
 		res.addHeader("Authorization", "Bearer" + token);
 	}
+	
+	// Daqui para baixo é uma atualização por conta do uso do Spring Boot 2.x
 	
 	private class JWTAuthenticationFailureHandler implements AuthenticationFailureHandler {
 		 

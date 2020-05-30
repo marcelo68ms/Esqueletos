@@ -22,6 +22,12 @@ import com.topseed.cursomc.security.JWTAuthenticationFilter;
 import com.topseed.cursomc.security.JWTAuthorizationFilter;
 import com.topseed.cursomc.security.JWTUtil;
 
+/**
+ * Classe responsável por configurações de Segurança da Aplicação.
+ * 
+ * @author marcelo
+ *
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -42,6 +48,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// lista de urls que serão liberadas com o GET apenas
 	private static final String[] PUBLIC_MATCHERS_GET = { "/produtos/**", "/categorias/**" };
 
+	/**
+	 * Método que libera as urls de serviço da aplicação
+	 * Inclusive determinando as URLs que são apenas para GET
+	 * 
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
@@ -50,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			http.headers().frameOptions().disable();
 		}
 
-		http.cors().and().csrf().disable();
+		http.cors().and().csrf().disable(); // Permitir o Cors 
 		http.authorizeRequests()
 			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll() // Libera as urls de GET
 			.antMatchers(PUBLIC_MATCHERS).permitAll() // Libera o restante de urls
@@ -66,13 +77,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 
+	/**
+	 * Método de configuração de captura dos detalhes de usuário e 
+	 * da encriptação da senha
+	 */
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 	}
 	
-	
-	// Liberação do cors
+	/**
+	 * Liberação do cors
+	 * 
+	 * @return
+	 */
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -80,6 +98,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return source;
 	}
 
+	/**
+	 * Método responsável pela incriptação da senha.
+	 * 
+	 * @return
+	 */
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();

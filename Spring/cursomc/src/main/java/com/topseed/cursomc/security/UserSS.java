@@ -10,6 +10,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.topseed.cursomc.domain.enums.Perfil;
 
+/**
+ * Classe obrigatória, para a implemetação do UserDetails do Security 
+ * 
+ * @author marcelo
+ *
+ */
 public class UserSS implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
@@ -19,10 +25,21 @@ public class UserSS implements UserDetails {
 	private String senha;
 	private Collection<? extends GrantedAuthority> authorities;
 	
+	/**
+	 * Construtor vazio
+	 */
 	public UserSS() {
 
 	}
 
+	/**
+	 * Construtor com a carga inicial dos atributos
+	 * 
+	 * @param id
+	 * @param email
+	 * @param senha
+	 * @param perfis
+	 */
 	public UserSS(Integer id, String email, String senha, Set<Perfil> perfis) {
 		super();
 		this.id = id;
@@ -37,19 +54,19 @@ public class UserSS implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// Lista da linha 14
+		// Lista da linha 26
 		return authorities;
 	}
 
 	@Override
 	public String getPassword() {
-		// linha 13
+		// linha 25
 		return senha;
 	}
 
 	@Override
 	public String getUsername() {
-		// linha 12
+		// linha 24
 		return email;
 	}
 
