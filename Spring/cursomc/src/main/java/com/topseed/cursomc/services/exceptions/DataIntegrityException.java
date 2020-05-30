@@ -1,5 +1,11 @@
 package com.topseed.cursomc.services.exceptions;
 
+/**
+ * Classe que se responsabiliza pela integridade dos dados
+ * 
+ * @author marcelo
+ *
+ */
 public class DataIntegrityException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 

@@ -1,5 +1,11 @@
 package com.topseed.cursomc.services.validation.util;
 
+/**
+ * Classe com as validações de CPF e CNPJ
+ * 
+ * @author marcelo
+ *
+ */
 public class BR {
 		// CPF
 		private static final int[] WEIGHT_SSN = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
