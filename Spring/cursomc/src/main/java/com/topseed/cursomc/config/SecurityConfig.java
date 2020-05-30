@@ -18,6 +18,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.topseed.cursomc.security.JWTAuthenticationFilter;
+import com.topseed.cursomc.security.JWTUtil;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -28,6 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private Environment env;
+	
+	@Autowired
+	private JWTUtil jwtUtil;
 
 	// lista de urls que serão liberadas
 	private static final String[] PUBLIC_MATCHERS = { "/h2-console/**", "/produtos/**", "/categorias/**" };
@@ -48,6 +54,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll() // Libera as urls de GET
 			.antMatchers(PUBLIC_MATCHERS).permitAll() // Libera o restante de urls
 			.anyRequest().authenticated();
+		
+		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+		
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 
