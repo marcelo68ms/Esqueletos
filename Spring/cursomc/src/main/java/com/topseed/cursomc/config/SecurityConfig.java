@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -30,6 +31,7 @@ import com.topseed.cursomc.security.JWTUtil;
  */
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	/* Por default o security bloqueia todas as URLs da aplicação */
 	
@@ -43,10 +45,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private JWTUtil jwtUtil;
 
 	// lista de urls que serão liberadas
-	private static final String[] PUBLIC_MATCHERS = { "/h2-console/**", "/produtos/**", "/categorias/**" };
+	private static final String[] PUBLIC_MATCHERS = { "/h2-console/**" };
 
 	// lista de urls que serão liberadas com o GET apenas
 	private static final String[] PUBLIC_MATCHERS_GET = { "/produtos/**", "/categorias/**" };
+	
+	// lista de urls que serão liberadas com o POST
+	private static final String[] PUBLIC_MATCHERS_POST = { "/clientes/**" };
+	
 
 	/**
 	 * Método que libera as urls de serviço da aplicação
@@ -63,6 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.cors().and().csrf().disable(); // Permitir o Cors 
 		http.authorizeRequests()
+			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_POST).permitAll() // Libera as urls de POST
 			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll() // Libera as urls de GET
 			.antMatchers(PUBLIC_MATCHERS).permitAll() // Libera o restante de urls
 			.anyRequest().authenticated();
