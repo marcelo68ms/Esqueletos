@@ -93,5 +93,13 @@ public class UserSS implements UserDetails {
 		// O usuário está ativo ?
 		return true;
 	}
-
+	
+	/**
+	 * Método que retorna se o perfil é pertencente ao usuário logado.
+	 * @param perfil
+	 * @return
+	 */
+	public boolean hasRole(Perfil perfil) {
+		return getAuthorities().contains(new SimpleGrantedAuthority(perfil.getDescricao()));
+	}
 }

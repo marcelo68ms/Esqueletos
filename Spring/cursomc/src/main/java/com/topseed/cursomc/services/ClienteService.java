@@ -15,11 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.topseed.cursomc.domain.Cidade;
 import com.topseed.cursomc.domain.Cliente;
 import com.topseed.cursomc.domain.Endereco;
+import com.topseed.cursomc.domain.enums.Perfil;
 import com.topseed.cursomc.domain.enums.TipoCliente;
 import com.topseed.cursomc.dto.ClienteDTO;
 import com.topseed.cursomc.dto.ClienteNewDTO;
 import com.topseed.cursomc.repositories.ClienteRepository;
 import com.topseed.cursomc.repositories.EnderecoRepository;
+import com.topseed.cursomc.security.UserSS;
+import com.topseed.cursomc.services.exceptions.AuthorizationException;
 import com.topseed.cursomc.services.exceptions.DataIntegrityException;
 import com.topseed.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -48,6 +51,12 @@ public class ClienteService {
 	 * @return
 	 */
 	public Cliente find(Integer id) {
+		
+		UserSS user = UserService.authenticated();
+		if (user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso Negado");
+		}
+		
 		Optional<Cliente> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Nome: " + Cliente.class.getName()));
