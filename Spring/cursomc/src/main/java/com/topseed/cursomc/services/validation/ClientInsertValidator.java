@@ -15,20 +15,32 @@ import com.topseed.cursomc.repositories.ClienteRepository;
 import com.topseed.cursomc.resources.exceptions.FieldMessage;
 import com.topseed.cursomc.services.validation.util.BR;
 
+/**
+ * Classe que faz o tratamento de validações do Cliente na sua inserção.
+ * 
+ * @author marcelo
+ *
+ */
 public class ClientInsertValidator implements ConstraintValidator<ClienteInsert, ClienteNewDTO> {
 
 	@Autowired
 	private ClienteRepository repo;
 	
+	/**
+	 * Inicializador da classe passando a interface como parâmetro
+	 */
 	@Override
 	public void initialize(ClienteInsert ann) {
 	}
 
+	/**
+	 * Retorna se as validações do Cliente são válidas ou não
+	 */
 	@Override
 	public boolean isValid(ClienteNewDTO objDto, ConstraintValidatorContext context) {
 		List<FieldMessage> list = new ArrayList<>();
 		
-		// inclua os testes aqui, inserindo erros na lista
+		// inclua os testes de validade do Cliente aqui, inserindo erros na lista
 		
 		if (objDto.getTipo().equals(TipoCliente.PESSOAFISICA.getCod()) && !BR.isValidCPF(objDto.getCpfOuCnpj())) {
 			list.add(new FieldMessage("cpfOuCnpj", "CPF inválido"));

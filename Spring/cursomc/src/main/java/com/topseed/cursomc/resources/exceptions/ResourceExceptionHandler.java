@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.topseed.cursomc.services.exceptions.AuthorizationException;
 import com.topseed.cursomc.services.exceptions.DataIntegrityException;
 import com.topseed.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -47,6 +48,7 @@ public class ResourceExceptionHandler {
 		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.value(), e.getMessage(), System.currentTimeMillis());
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
+	
 	/**
 	 * Tratamento do erro de validação de uma lista de resultados
 	 * 
@@ -64,5 +66,19 @@ public class ResourceExceptionHandler {
 		}
 		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+	}
+	
+	/**
+	 * Tratamento para quando o usuário não é o Cliente e não tem autorização para acessar dados
+	 * de outros clientes
+	 * 
+	 * @param e
+	 * @param request
+	 * @return
+	 */
+	@ExceptionHandler(AuthorizationException.class)
+	public ResponseEntity<StandardError> objectNotFound(AuthorizationException e, HttpServletRequest request) {
+		StandardError err = new StandardError(HttpStatus.FORBIDDEN.value(), e.getMessage(), System.currentTimeMillis());
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(err);
 	}
 }

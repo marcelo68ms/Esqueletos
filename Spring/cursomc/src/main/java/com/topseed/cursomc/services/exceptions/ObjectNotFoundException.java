@@ -1,5 +1,11 @@
 package com.topseed.cursomc.services.exceptions;
 
+/**
+ * Classe responsável pelo trabalhando de Objeto não encontrado
+ * 
+ * @author marcelo
+ *
+ */
 public class ObjectNotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 

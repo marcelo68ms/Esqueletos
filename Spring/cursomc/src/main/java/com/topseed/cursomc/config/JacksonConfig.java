@@ -8,6 +8,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.topseed.cursomc.domain.PagamentoComBoleto;
 import com.topseed.cursomc.domain.PagamentoComCartao;
 
+/**
+ * Classe de Configuração do Framework Jackson
+ * 
+ * @author marcelo
+ *
+ */
 @Configuration
 public class JacksonConfig {
 	// https://stackoverflow.com/questions/41452598/overcome-can-not-construct-instance-of-interfaceclass-without-hinting-the-pare

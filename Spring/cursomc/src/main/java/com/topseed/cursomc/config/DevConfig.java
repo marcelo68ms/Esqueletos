@@ -12,6 +12,12 @@ import com.topseed.cursomc.services.DBService;
 import com.topseed.cursomc.services.EmailService;
 import com.topseed.cursomc.services.SmtpEmailService;
 
+/**
+ * Classe Responsável pela configuração da aplicação no ambiente de Desenvolvimento
+ * 
+ * @author marcelo
+ *
+ */
 @Configuration
 @Profile("dev")
 public class DevConfig {

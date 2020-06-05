@@ -16,6 +16,12 @@ import com.topseed.cursomc.dto.ClienteDTO;
 import com.topseed.cursomc.repositories.ClienteRepository;
 import com.topseed.cursomc.resources.exceptions.FieldMessage;
 
+/**
+ * Classe que faz o tratamento de validações do Cliente na sua alteração.
+ * 
+ * @author marcelo
+ *
+ */
 public class ClientUpdateValidator implements ConstraintValidator<ClienteUpdate, ClienteDTO> {
 
 	@Autowired
@@ -28,6 +34,9 @@ public class ClientUpdateValidator implements ConstraintValidator<ClienteUpdate,
 	public void initialize(ClienteUpdate ann) {
 	}
 
+	/**
+	 * Retorna se as validações do Cliente são válidas ou não
+	 */
 	@Override
 	public boolean isValid(ClienteDTO objDto, ConstraintValidatorContext context) {
 		

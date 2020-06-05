@@ -1,20 +1,21 @@
 package com.topseed.cursomc.resources.exceptions;
 
 import java.io.Serializable;
-
+/**
+ * Classe de apoio a messagens de erro personalizadas para as
+ * respostas dos serviços
+ * 
+ * @author marcelo
+ *
+ */
 public class FieldMessage implements Serializable {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private String fieldName;
 	private String message;
 	
 	public FieldMessage() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public FieldMessage(String fieldName, String message) {
