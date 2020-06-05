@@ -6,8 +6,12 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.topseed.cursomc.domain.Cliente;
 import com.topseed.cursomc.domain.ItemPedido;
 import com.topseed.cursomc.domain.PagamentoComBoleto;
 import com.topseed.cursomc.domain.Pedido;
@@ -15,6 +19,8 @@ import com.topseed.cursomc.domain.enums.EstadoPagamento;
 import com.topseed.cursomc.repositories.ItemPedidoRepository;
 import com.topseed.cursomc.repositories.PagamentoRepository;
 import com.topseed.cursomc.repositories.PedidoRepository;
+import com.topseed.cursomc.security.UserSS;
+import com.topseed.cursomc.services.exceptions.AuthorizationException;
 import com.topseed.cursomc.services.exceptions.ObjectNotFoundException;
 
 /**
@@ -42,7 +48,7 @@ public class PedidoService {
 	private ItemPedidoRepository itemPedidoRepository;
 	
 	@Autowired
-	private ClienteService cliente;
+	private ClienteService clienteService;
 	
 	@Autowired
 	private EmailService emailService;
@@ -63,7 +69,7 @@ public class PedidoService {
 	public Pedido insert(Pedido obj) {
 		obj.setId(null);
 		obj.setInstante(new Date());
-		obj.setCliente(cliente.find(obj.getCliente().getId()));
+		obj.setCliente(clienteService.find(obj.getCliente().getId()));
 		obj.getPagamento().setEstado(EstadoPagamento.PENDENTE);
 		obj.getPagamento().setPedido(obj);
 		if (obj.getPagamento() instanceof PagamentoComBoleto) {
@@ -87,4 +93,28 @@ public class PedidoService {
 		
 		return obj;
 	}
+	
+	/**
+	 * Efetua uma busca de Pedidos paginadas   
+	 *
+	 * @param page
+	 * @param linesPerPage
+	 * @param orderBy
+	 * @param direction
+	 * @return
+	 */
+	public Page<Pedido> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		// Busca o usuário autenticado
+		UserSS user = UserService.authenticated();
+		if (user == null) {
+			throw new AuthorizationException("Acesso Negado");
+		}
+				
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		
+		Cliente cliente = clienteService.find(user.getId());
+		
+		return rep.findByCliente(cliente, pageRequest);
+	}
+
 }

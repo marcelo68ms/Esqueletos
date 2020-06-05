@@ -5,6 +5,12 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe responsável para ajustar as URLs e os parâmetros nos serviços
+ * 
+ * @author marcelo
+ *
+ */
 public class URL {
 
 	public static List<Integer> decodeIntList(String s) {

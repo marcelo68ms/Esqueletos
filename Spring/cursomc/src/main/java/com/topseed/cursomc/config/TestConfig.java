@@ -11,6 +11,10 @@ import com.topseed.cursomc.services.DBService;
 import com.topseed.cursomc.services.EmailService;
 import com.topseed.cursomc.services.MockEmailService;
 
+/**
+ * Classe Responsável pela configuração no ambiente de Teste
+ * 
+ */
 @Configuration
 @Profile("test")
 public class TestConfig {
