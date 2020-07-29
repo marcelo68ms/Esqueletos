@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 
 // Método responsável para executar a aplicação
 void main() {
-  runApp(MaterialApp(
-      title: "Contador de Pessoas",
-      home: Home()
-  ));
+  runApp(MaterialApp(title: "Contador de Pessoas", home: Home()));
 }
 
-/**
+/*
  * Classe principal para a montagem da interface da aplicação
  */
 class Home extends StatefulWidget {
@@ -16,7 +13,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-/**
+/*
  *  Classe responsável por agrupar os métodos de montagem da interface
  */
 class _HomeState extends State<Home> {
@@ -42,7 +39,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Image.asset("images/lanchonete.jpg",
+        Image.asset(
+          "images/lanchonete.jpg",
           fit: BoxFit.cover,
           height: 1000.0,
         ),
@@ -51,34 +49,36 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             Text(
               "Pessoas: $_people",
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Padding (
+                Padding(
                   padding: EdgeInsets.all(10.0),
                   child: FlatButton(
                     child: Text(
                       "+1",
                       style: TextStyle(fontSize: 40.00, color: Colors.white),
-                    ), onPressed: () {
+                    ),
+                    onPressed: () {
                       _changePeople(1);
-                      },
+                    },
                   ),
                 ),
-                Padding (
+                Padding(
                   padding: EdgeInsets.all(10.0),
                   child: FlatButton(
                     child: Text(
                       "-1",
                       style: TextStyle(fontSize: 40.00, color: Colors.white),
-                    ), onPressed: () {
+                    ),
+                    onPressed: () {
                       _changePeople(-1);
-                  },
+                    },
                   ),
                 )
-
               ],
             ),
             Text(
@@ -94,4 +94,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
