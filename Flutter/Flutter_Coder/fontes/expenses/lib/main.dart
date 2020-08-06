@@ -23,6 +23,10 @@ class ExpensesApp extends StatelessWidget {
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
+              button: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
@@ -67,12 +71,12 @@ class _MyHomePageState extends State<MyHomePage> {
       id: 't4',
       title: 'Pagamento do Cartão',
       value: 894.63,
-      date: DateTime.now().subtract(Duration(days: 4)),
+      date: DateTime.now().subtract(Duration(days: 1)),
     ),
     Transaction(
       id: 't5',
       title: 'Compra Apto',
-      value: 105000.00,
+      value: 10050.00,
       date: DateTime.now().subtract(Duration(days: 2)),
     ),
     Transaction(
@@ -113,10 +117,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: (ctx) {
-          return TransactionForm(_addTransaction);
-        });
+      context: context,
+      builder: (ctx) {
+        return TransactionForm(_addTransaction);
+      },
+    );
   }
 
   @override
