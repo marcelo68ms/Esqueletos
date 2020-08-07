@@ -48,50 +48,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _transactions = [
-    // Transaction(
-    //   id: 't1',
-    //   title: 'Novo Tênis de Corrida',
-    //   value: 310.76,
-    //   date: DateTime.now().subtract(Duration(days: 4)),
-    // ),
-    // Transaction(
-    //   id: 't2',
-    //   title: 'Conta de Luz',
-    //   value: 211.30,
-    //   date: DateTime.now().subtract(Duration(days: 3)),
-    // ),
-    // Transaction(
-    //   id: 't3',
-    //   title: 'Prestação do Carro',
-    //   value: 2203.67,
-    //   date: DateTime.now().subtract(Duration(days: 4)),
-    // ),
-    // Transaction(
-    //   id: 't4',
-    //   title: 'Pagamento do Cartão',
-    //   value: 894.63,
-    //   date: DateTime.now().subtract(Duration(days: 1)),
-    // ),
-    // Transaction(
-    //   id: 't5',
-    //   title: 'Compra Apto',
-    //   value: 10050.00,
-    //   date: DateTime.now().subtract(Duration(days: 2)),
-    // ),
-    // Transaction(
-    //   id: 't6',
-    //   title: 'Crédito no telefone',
-    //   value: 25,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: 't7',
-    //   title: 'Seguro',
-    //   value: 1760.67,
-    //   date: DateTime.now(),
-    // ),
-  ];
+  final List<Transaction> _transactions = [];
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -132,22 +89,34 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      title: Text('Despesas Pessoais'),
+      actions: [
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () => _openTransactionFormModal(context),
+        ),
+      ],
+    );
+
+    final availableHeigth = MediaQuery.of(context).size.height -
+        appBar.preferredSize.height -
+        MediaQuery.of(context).padding.top;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Despesas Pessoais'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () => _openTransactionFormModal(context),
-          ),
-        ],
-      ),
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Chart(_recentTransactions),
-            TransactionList(_transactions, _removeTransaction),
+            Container(
+              height: availableHeigth * 0.3,
+              child: Chart(_recentTransactions),
+            ),
+            Container(
+              height: availableHeigth * 0.7,
+              child: TransactionList(_transactions, _removeTransaction),
+            ),
           ],
         ),
       ),
