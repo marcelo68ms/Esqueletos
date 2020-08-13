@@ -123,16 +123,32 @@ class _HomeState extends State<Home> {
                           color: Colors.amber,
                         ),
                         buildTextField(
-                            "Reais", "RS\$ ", realController, _realMudou),
+                          "Reais",
+                          "RS\$ ",
+                          realController,
+                          _realMudou,
+                        ),
                         Divider(),
                         buildTextField(
-                            "Dólares", "US\$ ", dolarController, _dolarMudou),
+                          "Dólares",
+                          "US\$ ",
+                          dolarController,
+                          _dolarMudou,
+                        ),
                         Divider(),
                         buildTextField(
-                            "Euros", "EU\$ ", euroController, _euroMudou),
+                          "Euros",
+                          "EU\$ ",
+                          euroController,
+                          _euroMudou,
+                        ),
                         Divider(),
-                        buildTextField("Bitcoins", "BTC ", bitcoinController,
-                            _bitcoinMudou)
+                        buildTextField(
+                          "Bitcoins",
+                          "BTC ",
+                          bitcoinController,
+                          _bitcoinMudou,
+                        ),
                       ],
                     ),
                   );
