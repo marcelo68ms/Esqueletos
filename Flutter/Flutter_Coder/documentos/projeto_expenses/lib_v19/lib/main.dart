@@ -22,7 +22,7 @@ class ExpensesApp extends StatelessWidget {
         accentColor: Colors.amber,
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
-              headline6: TextStyle(
+              title: TextStyle(
                 fontFamily: 'OpenSans',
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -34,7 +34,7 @@ class ExpensesApp extends StatelessWidget {
             ),
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
-                headline6: TextStyle(
+                title: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

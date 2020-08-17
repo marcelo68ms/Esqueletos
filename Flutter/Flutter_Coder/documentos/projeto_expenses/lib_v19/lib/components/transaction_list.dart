@@ -18,7 +18,7 @@ class TransactionList extends StatelessWidget {
                   SizedBox(height: 20),
                   Text(
                     'Nenhuma Transação Cadastrada!',
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.title,
                   ),
                   SizedBox(height: 20),
                   Container(
@@ -54,7 +54,7 @@ class TransactionList extends StatelessWidget {
                   ),
                   title: Text(
                     tr.title,
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.title,
                   ),
                   subtitle: Text(
                     DateFormat('d MMM y').format(tr.date),
