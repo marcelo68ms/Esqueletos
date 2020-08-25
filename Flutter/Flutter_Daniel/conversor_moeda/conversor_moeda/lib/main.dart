@@ -160,8 +160,12 @@ class _HomeState extends State<Home> {
 }
 
 // Método que efetua a alteração dos campos textos
-Widget buildTextField(String label, String prefix,
-    TextEditingController control, Function funcao) {
+Widget buildTextField(
+  String label,
+  String prefix,
+  TextEditingController control,
+  Function funcao,
+) {
   return TextField(
     controller: control,
     decoration: InputDecoration(
