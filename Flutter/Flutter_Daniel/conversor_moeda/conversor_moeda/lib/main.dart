@@ -123,16 +123,32 @@ class _HomeState extends State<Home> {
                           color: Colors.amber,
                         ),
                         buildTextField(
-                            "Reais", "RS\$ ", realController, _realMudou),
+                          "Reais",
+                          "RS\$ ",
+                          realController,
+                          _realMudou,
+                        ),
                         Divider(),
                         buildTextField(
-                            "Dólares", "US\$ ", dolarController, _dolarMudou),
+                          "Dólares",
+                          "US\$ ",
+                          dolarController,
+                          _dolarMudou,
+                        ),
                         Divider(),
                         buildTextField(
-                            "Euros", "EU\$ ", euroController, _euroMudou),
+                          "Euros",
+                          "EU\$ ",
+                          euroController,
+                          _euroMudou,
+                        ),
                         Divider(),
-                        buildTextField("Bitcoins", "BTC ", bitcoinController,
-                            _bitcoinMudou)
+                        buildTextField(
+                          "Bitcoins",
+                          "BTC ",
+                          bitcoinController,
+                          _bitcoinMudou,
+                        ),
                       ],
                     ),
                   );
@@ -144,8 +160,12 @@ class _HomeState extends State<Home> {
 }
 
 // Método que efetua a alteração dos campos textos
-Widget buildTextField(String label, String prefix,
-    TextEditingController control, Function funcao) {
+Widget buildTextField(
+  String label,
+  String prefix,
+  TextEditingController control,
+  Function funcao,
+) {
   return TextField(
     controller: control,
     decoration: InputDecoration(
