@@ -32,4 +32,11 @@ final DUMMY_PRODUCTS = [
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
   ),
+  Product(
+    id: 'p5',
+    title: 'Carrinho de Bebê',
+    description: 'Carrinho Reversível.',
+    price: 250.00,
+    imageUrl: 'https://photos.app.goo.gl/DSfD65coDt9s3PF58',
+  ),
 ];
