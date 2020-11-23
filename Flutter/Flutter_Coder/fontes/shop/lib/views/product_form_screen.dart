@@ -83,7 +83,13 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
       imageUrl: _formData['imageUrl'],
     );
 
-    Provider.of<Products>(context).addProduct(newProduct);
+    final products = Provider.of<Products>(context, listen: false);
+    if (_formData['id'] == null) {
+      products.addProduct(newProduct);
+    } else {
+      products.updateProduct(newProduct);
+    }
+
     Navigator.of(context).pop();
   }
 
