@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/providers/cart.dart';
+import '../providers/cart.dart';
 
 class CartItemWidget extends StatelessWidget {
   final CartItem cartItem;
@@ -28,26 +28,25 @@ class CartItemWidget extends StatelessWidget {
       direction: DismissDirection.endToStart,
       confirmDismiss: (_) {
         return showDialog(
-          context: context,
-          builder: (ctx) => AlertDialog(
-            title: Text('Tem Certeza ?'),
-            content: Text('Quer remover o item do carrinho ?'),
-            actions: [
-              FlatButton(
-                onPressed: () {
-                  Navigator.of(ctx).pop(false);
-                },
-                child: Text('Não'),
-              ),
-              FlatButton(
-                onPressed: () {
-                  Navigator.of(ctx).pop(true);
-                },
-                child: Text('Sim'),
-              ),
-            ],
-          ),
-        );
+            context: context,
+            builder: (ctx) => AlertDialog(
+                  title: Text('Tem certeza?'),
+                  content: Text('Quer remover o item do carrinho?'),
+                  actions: <Widget>[
+                    FlatButton(
+                      child: Text('Não'),
+                      onPressed: () {
+                        Navigator.of(ctx).pop(false);
+                      },
+                    ),
+                    FlatButton(
+                      child: Text('Sim'),
+                      onPressed: () {
+                        Navigator.of(ctx).pop(true);
+                      },
+                    ),
+                  ],
+                ));
       },
       onDismissed: (_) {
         Provider.of<Cart>(context, listen: false)
@@ -70,7 +69,7 @@ class CartItemWidget extends StatelessWidget {
               ),
             ),
             title: Text(cartItem.title),
-            subtitle: Text('Total R\$ ${cartItem.price * cartItem.quantity}'),
+            subtitle: Text('Total: R\$ ${cartItem.price * cartItem.quantity}'),
             trailing: Text('${cartItem.quantity}x'),
           ),
         ),
