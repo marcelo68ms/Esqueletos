@@ -6,6 +6,8 @@ import 'package:shop/data/dummy_data.dart';
 import 'package:shop/providers/product.dart';
 
 class Products with ChangeNotifier {
+  final String _url =
+      'https://flutter-cod3r-fb964.firebaseio.com/products.json';
   List<Product> _items = DUMMY_PRODUCTS;
 
   //bool _showFavoriteOnly = false;
@@ -16,11 +18,13 @@ class Products with ChangeNotifier {
     return _items.where((prod) => prod.isFavorite).toList();
   }
 
-  Future<void> addProduct(Product newProduct) async {
-    const url = 'https://flutter-cod3r-fb964.firebaseio.com/products.json';
+  Future<void> loadProducts() async {
+    final response = await http.get(_url);
+  }
 
+  Future<void> addProduct(Product newProduct) async {
     final response = await http.post(
-      url,
+      _url,
       body: json.encode({
         'title': newProduct.title,
         'description': newProduct.description,
