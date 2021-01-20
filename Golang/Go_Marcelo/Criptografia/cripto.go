@@ -19,18 +19,8 @@ func main() {
 // senhaCriptografada Retorna a senha criptografada
 func senhaCriptografada(senha string) string {
 	senhaInicialByte := []byte(senha)
-	custo := nossoCustoCriptografado()
-	senhaByte, _ := bcrypt.GenerateFromPassword(senhaInicialByte, custo)
-
+	senhaByte, _ := bcrypt.GenerateFromPassword(senhaInicialByte, bcrypt.MaxCost)
 	return string(senhaByte)
-}
-
-// nossoCustoCriptografado retorna o custo da criptografia
-func nossoCustoCriptografado() int {
-	custoFraseSecreta := []byte(fraseSecreta)
-	custo, _ := bcrypt.Cost(custoFraseSecreta)
-
-	return custo
 }
 
 func isSenhaReal(senha string) error {
