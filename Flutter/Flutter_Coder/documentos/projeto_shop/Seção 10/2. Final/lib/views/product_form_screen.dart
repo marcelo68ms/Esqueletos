@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/providers/product.dart';
-import 'package:shop/providers/products.dart';
+
+import '../providers/product.dart';
+import '../providers/products.dart';
 
 class ProductFormScreen extends StatefulWidget {
   @override
@@ -12,8 +12,8 @@ class ProductFormScreen extends StatefulWidget {
 class _ProductFormScreenState extends State<ProductFormScreen> {
   final _priceFocusNode = FocusNode();
   final _descriptionFocusNode = FocusNode();
-  final _imageURLFocusNode = FocusNode();
-  final _imageURLController = TextEditingController();
+  final _imageUrlFocusNode = FocusNode();
+  final _imageUrlController = TextEditingController();
   final _form = GlobalKey<FormState>();
   final _formData = Map<String, Object>();
   bool _isLoading = false;
@@ -21,7 +21,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
   @override
   void initState() {
     super.initState();
-    _imageURLFocusNode.addListener(_updateImageURL);
+    _imageUrlFocusNode.addListener(_updateImage);
   }
 
   @override
@@ -30,6 +30,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
 
     if (_formData.isEmpty) {
       final product = ModalRoute.of(context).settings.arguments as Product;
+
       if (product != null) {
         _formData['id'] = product.id;
         _formData['title'] = product.title;
@@ -37,27 +38,27 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
         _formData['price'] = product.price;
         _formData['imageUrl'] = product.imageUrl;
 
-        _imageURLController.text = _formData['imageUrl'];
+        _imageUrlController.text = _formData['imageUrl'];
       } else {
         _formData['price'] = '';
       }
     }
   }
 
-  void _updateImageURL() {
-    if (isValidImageUrl(_imageURLController.text)) {
+  void _updateImage() {
+    if (isValidImageUrl(_imageUrlController.text)) {
       setState(() {});
     }
   }
 
   bool isValidImageUrl(String url) {
-    bool isValidProtocol = url.toLowerCase().startsWith('http://') ||
-        url.toLowerCase().startsWith('https://');
-    bool isEndsWith = url.toLowerCase().endsWith('.png') ||
-        url.toLowerCase().endsWith('.jpg') ||
-        url.toLowerCase().endsWith('.jpeg');
-
-    return isValidProtocol && isEndsWith;
+    bool startWithHttp = url.toLowerCase().startsWith('http://');
+    bool startWithHttps = url.toLowerCase().startsWith('https://');
+    bool endsWithPng = url.toLowerCase().endsWith('.png');
+    bool endsWithJpg = url.toLowerCase().endsWith('.jpg');
+    bool endsWithJpeg = url.toLowerCase().endsWith('.jpeg');
+    return (startWithHttp || startWithHttps) &&
+        (endsWithPng || endsWithJpg || endsWithJpeg);
   }
 
   @override
@@ -65,22 +66,24 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
     super.dispose();
     _priceFocusNode.dispose();
     _descriptionFocusNode.dispose();
-    _imageURLFocusNode.removeListener(_updateImageURL);
-    _imageURLFocusNode.dispose();
+    _imageUrlFocusNode.removeListener(_updateImage);
+    _imageUrlFocusNode.dispose();
   }
 
   Future<void> _saveForm() async {
-    if (!_form.currentState.validate()) {
+    var isValid = _form.currentState.validate();
+
+    if (!isValid) {
       return;
     }
 
     _form.currentState.save();
 
-    final newProduct = Product(
+    final product = Product(
       id: _formData['id'],
       title: _formData['title'],
-      description: _formData['description'],
       price: _formData['price'],
+      description: _formData['description'],
       imageUrl: _formData['imageUrl'],
     );
 
@@ -89,35 +92,32 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
     });
 
     final products = Provider.of<Products>(context, listen: false);
-    if (_formData['id'] == null) {
-      try {
-        await products.addProduct(newProduct);
-        Navigator.of(context).pop();
-      } catch (error) {
-        await showDialog<Null>(
-          context: context,
-          builder: (ctx) => AlertDialog(
-            title: Text('Ocorreu um erro !'),
-            content: Text(error.toString()),
-            actions: [
-              FlatButton(
-                child: Text('Ok'),
-                onPressed: () => Navigator.of(context).pop(),
-              )
-            ],
-          ),
-        );
-      } finally {
-        setState(() {
-          _isLoading = false;
-        });
+
+    try {
+      if (_formData['id'] == null) {
+        await products.addProduct(product);
+      } else {
+        await products.updateProduct(product);
       }
-    } else {
-      products.updateProduct(newProduct);
+      Navigator.of(context).pop();
+    } catch (error) {
+      await showDialog<Null>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text('Ocorreu um erro!'),
+          content: Text('Ocorreu um erro pra salvar o produto!'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Fechar'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ),
+      );
+    } finally {
       setState(() {
         _isLoading = false;
       });
-      Navigator.of(context).pop();
     }
   }
 
@@ -126,7 +126,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Formulário Produto'),
-        actions: [
+        actions: <Widget>[
           IconButton(
             icon: Icon(Icons.save),
             onPressed: () {
@@ -144,23 +144,23 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
               child: Form(
                 key: _form,
                 child: ListView(
-                  children: [
+                  children: <Widget>[
                     TextFormField(
                       initialValue: _formData['title'],
-                      decoration: InputDecoration(labelText: 'Titulo'),
+                      decoration: InputDecoration(labelText: 'Título'),
                       textInputAction: TextInputAction.next,
                       onFieldSubmitted: (_) {
                         FocusScope.of(context).requestFocus(_priceFocusNode);
                       },
                       onSaved: (value) => _formData['title'] = value,
                       validator: (value) {
-                        if (value.trim().isEmpty) {
-                          return 'Informe um titulo válido !';
+                        bool isEmpty = value.trim().isEmpty;
+                        bool isInvalid = value.trim().length < 3;
+
+                        if (isEmpty || isInvalid) {
+                          return 'Informe um Título válido com no mínimo 3 caracteres!';
                         }
 
-                        if (value.trim().length < 3) {
-                          return 'O titulo deve ter ao menos 3 caracteres';
-                        }
                         return null;
                       },
                     ),
@@ -169,8 +169,9 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                       decoration: InputDecoration(labelText: 'Preço'),
                       textInputAction: TextInputAction.next,
                       focusNode: _priceFocusNode,
-                      keyboardType:
-                          TextInputType.numberWithOptions(decimal: true),
+                      keyboardType: TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
                       onFieldSubmitted: (_) {
                         FocusScope.of(context)
                             .requestFocus(_descriptionFocusNode);
@@ -178,11 +179,14 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                       onSaved: (value) =>
                           _formData['price'] = double.parse(value),
                       validator: (value) {
-                        if (value.trim().isEmpty ||
-                            double.tryParse(value) == null ||
-                            double.tryParse(value) <= 0) {
-                          return 'Informe um preço válido !!';
+                        bool isEmpty = value.trim().isEmpty;
+                        var newPrice = double.tryParse(value);
+                        bool isInvalid = newPrice == null || newPrice <= 0;
+
+                        if (isEmpty || isInvalid) {
+                          return 'Informe um Preço válido!';
                         }
+
                         return null;
                       },
                     ),
@@ -194,35 +198,37 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                       focusNode: _descriptionFocusNode,
                       onSaved: (value) => _formData['description'] = value,
                       validator: (value) {
-                        if (value.trim().isEmpty) {
-                          return 'Informe uma descrição válido !';
+                        bool isEmpty = value.trim().isEmpty;
+                        bool isInvalid = value.trim().length < 10;
+
+                        if (isEmpty || isInvalid) {
+                          return 'Informe uma Descrição válida com no mínimo 10 caracteres!';
                         }
 
-                        if (value.trim().length < 10) {
-                          return 'A descrição deverá ter ao menos 10 caracteres';
-                        }
                         return null;
                       },
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
+                      children: <Widget>[
                         Expanded(
                           child: TextFormField(
                             decoration:
                                 InputDecoration(labelText: 'URL da Imagem'),
                             keyboardType: TextInputType.url,
                             textInputAction: TextInputAction.done,
-                            focusNode: _imageURLFocusNode,
-                            controller: _imageURLController,
+                            focusNode: _imageUrlFocusNode,
+                            controller: _imageUrlController,
                             onFieldSubmitted: (_) {
                               _saveForm();
                             },
                             onSaved: (value) => _formData['imageUrl'] = value,
                             validator: (value) {
-                              if (value.trim().isEmpty ||
-                                  !isValidImageUrl(value)) {
-                                return 'Informe uma URL válida';
+                              bool isEmpty = value.trim().isEmpty;
+                              bool isInvalid = !isValidImageUrl(value);
+
+                              if (isEmpty || isInvalid) {
+                                return 'Informe uma URL válida!';
                               }
 
                               return null;
@@ -237,13 +243,16 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                             left: 10,
                           ),
                           decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey, width: 1),
+                            border: Border.all(
+                              color: Colors.grey,
+                              width: 1,
+                            ),
                           ),
                           alignment: Alignment.center,
-                          child: _imageURLController.text.isEmpty
+                          child: _imageUrlController.text.isEmpty
                               ? Text('Informe a URL')
                               : Image.network(
-                                  _imageURLController.text,
+                                  _imageUrlController.text,
                                   fit: BoxFit.cover,
                                 ),
                         ),

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/providers/products.dart';
-import 'package:shop/utils/app_routes.dart';
-import 'package:shop/widgets/app_drawer.dart';
-import 'package:shop/widgets/badge.dart';
-import 'package:shop/widgets/product_grid.dart';
-import 'package:shop/providers/cart.dart';
+import '../widgets/product_grid.dart';
+import '../widgets/badge.dart';
+import '../widgets/app_drawer.dart';
+import '../providers/cart.dart';
+import '../utils/app_routes.dart';
 
 enum FilterOptions {
   Favorite,
@@ -19,26 +18,14 @@ class ProductOverviewScreen extends StatefulWidget {
 
 class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   bool _showFavoriteOnly = false;
-  bool _isLoading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    // carregar os produtos
-    Provider.of<Products>(context, listen: false).loadProducts().then((_) {
-      setState(() {
-        _isLoading = false;
-      });
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
+        title: Text('Minha Loja'),
+        actions: <Widget>[
           PopupMenuButton(
-            icon: Icon(Icons.more_vert),
             onSelected: (FilterOptions selectedValue) {
               setState(() {
                 if (selectedValue == FilterOptions.Favorite) {
@@ -48,6 +35,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
                 }
               });
             },
+            icon: Icon(Icons.more_vert),
             itemBuilder: (_) => [
               PopupMenuItem(
                 child: Text('Somente Favoritos'),
@@ -72,13 +60,8 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
             ),
           )
         ],
-        title: Text('Minha Loja'),
       ),
-      body: _isLoading
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : ProductGrid(_showFavoriteOnly),
+      body: ProductGrid(_showFavoriteOnly),
       drawer: AppDrawer(),
     );
   }
