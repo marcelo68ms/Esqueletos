@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2a767857-1d8c-4b31-8f95-f0ca15bf1c19" name="Default" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1dEHWKhprVEayTrAOwFAIr2sn9n" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2a767857-1d8c-4b31-8f95-f0ca15bf1c19" name="Default" comment="" />
+      <created>1542735096830</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1542735096830</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/../.." />
+    </ignored-roots>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="366" y="123" width="626" height="513" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1602342042979">
+      <screen x="0" y="29" width="1366" height="710" />
+    </state>
+    <state x="366" y="123" width="626" height="513" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.29.1366.710@0.29.1366.710" timestamp="1602342042979" />
+    <state x="368" y="108" width="621" height="559" key="#main.dart" timestamp="1601136808340">
+      <screen x="0" y="29" width="1366" height="710" />
+    </state>
+    <state x="368" y="108" width="621" height="559" key="#main.dart/0.29.1366.710@0.29.1366.710" timestamp="1601136808340" />
+    <state x="99" y="127" width="1168" height="513" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1602343618186">
+      <screen x="0" y="29" width="1366" height="710" />
+    </state>
+    <state x="99" y="127" width="1168" height="513" key="com.android.tools.idea.avdmanager.AvdListDialog/0.29.1366.710@0.29.1366.710" timestamp="1602343618186" />
+  </component>
+</project>
