@@ -1,4 +1,4 @@
-package auxiliar
+package service
 
 import "fmt"
 
