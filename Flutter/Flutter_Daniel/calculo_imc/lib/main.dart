@@ -7,7 +7,7 @@ void main() {
   ));
 }
 
-/**
+/*
  * Classe responsável pela chamada da montagem da interface
  */
 class Home extends StatefulWidget {
@@ -15,7 +15,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-/**
+/*
  * Classe responsável pela inclusão dos componentes da interface
  */
 class _HomeState extends State<Home> {
@@ -97,19 +97,18 @@ class _HomeState extends State<Home> {
                     },
                   ),
                   TextFormField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        labelText: "Altura (cm)",
-                        labelStyle: TextStyle(color: Colors.green)),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.green, fontSize: 25.0),
-                    controller: alturaControler,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                          labelText: "Altura (cm)",
+                          labelStyle: TextStyle(color: Colors.green)),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.green, fontSize: 25.0),
+                      controller: alturaControler,
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Insera sua Altura !";
                         }
-                      }
-                  ),
+                      }),
                   Padding(
                       padding: EdgeInsets.only(top: 10, bottom: 10),
                       child: Container(
