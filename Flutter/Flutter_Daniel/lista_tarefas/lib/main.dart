@@ -5,12 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: Home()
-  ));
+  runApp(MaterialApp(home: Home()));
 }
 // Depois de escrever o Main usa-se o scaful, que a IDE gera as classes abaixo
-
 
 class Home extends StatefulWidget {
   @override
@@ -18,7 +15,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   final _toDoController = TextEditingController();
 
   List _toDoList = [];
@@ -31,7 +27,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    
+
     _readData().then((data) {
       // o setState é quem efetua a atualização da tela, mantendo ela viva
       setState(() {
@@ -54,10 +50,13 @@ class _HomeState extends State<Home> {
   Future<Null> _refresh() async {
     await Future.delayed(Duration(seconds: 1));
     setState(() {
-      _toDoList.sort((a, b){
-        if (a["ok"] && !b["ok"]) return 1;
-        else if (!a["ok"] && b["ok"]) return -1;
-        else return 0;
+      _toDoList.sort((a, b) {
+        if (a["ok"] && !b["ok"])
+          return 1;
+        else if (!a["ok"] && b["ok"])
+          return -1;
+        else
+          return 0;
       });
       _saveData();
     });
@@ -65,7 +64,7 @@ class _HomeState extends State<Home> {
   }
 
   @override
-  Widget Vábuild(BuildContext context) {
+  Widget build(BuildContext context) {
     // Troca o Container por Scaffold
     return Scaffold(
       appBar: AppBar(
@@ -75,7 +74,7 @@ class _HomeState extends State<Home> {
       ),
       body: Column(
         children: <Widget>[
-          Container (
+          Container(
             padding: EdgeInsets.fromLTRB(17, 1, 7, 1),
             child: Row(
               children: <Widget>[
@@ -84,8 +83,7 @@ class _HomeState extends State<Home> {
                     controller: _toDoController,
                     decoration: InputDecoration(
                         labelText: "Nova tarefa",
-                        labelStyle: TextStyle(color: Colors.blueAccent)
-                    ),
+                        labelStyle: TextStyle(color: Colors.blueAccent)),
                   ),
                 ),
                 RaisedButton(
@@ -98,29 +96,29 @@ class _HomeState extends State<Home> {
             ),
           ),
           Expanded(
-            child: RefreshIndicator(child:
-            ListView.builder(
-              padding: EdgeInsets.only(top:10),
-              itemCount: _toDoList.length,
-              itemBuilder: buildItem,
-            ), onRefresh: _refresh)
-          )
+              child: RefreshIndicator(
+                  child: ListView.builder(
+                    padding: EdgeInsets.only(top: 10),
+                    itemCount: _toDoList.length,
+                    itemBuilder: buildItem,
+                  ),
+                  onRefresh: _refresh))
         ],
       ),
     );
   }
 
-  Widget buildItem (context, index) {
+  Widget buildItem(context, index) {
     return Dismissible(
-      key: Key(DateTime
-          .now()
-          .millisecondsSinceEpoch
-          .toString()),
+      key: Key(DateTime.now().millisecondsSinceEpoch.toString()),
       background: Container(
         color: Colors.red,
         child: Align(
           alignment: Alignment(-0.9, 0.0),
-          child: Icon(Icons.delete, color: Colors.white,),
+          child: Icon(
+            Icons.delete,
+            color: Colors.white,
+          ),
         ),
       ),
       direction: DismissDirection.startToEnd,
@@ -128,11 +126,11 @@ class _HomeState extends State<Home> {
         title: Text(_toDoList[index]["title"]),
         value: _toDoList[index]["ok"],
         secondary: CircleAvatar(
-          child: Icon(_toDoList[index]["ok"] ?
-          Icons.check : Icons.error),),
+          child: Icon(_toDoList[index]["ok"] ? Icons.check : Icons.error),
+        ),
         onChanged: (c) {
           setState(() {
-            _toDoList[index] ["ok"] = c;
+            _toDoList[index]["ok"] = c;
             _saveData();
           });
         },
@@ -151,7 +149,8 @@ class _HomeState extends State<Home> {
 
           final snack = SnackBar(
             content: Text("Tarefa \"${_lastRemoved["title"]}\" removida !"),
-            action: SnackBarAction(label: "Desfazer",
+            action: SnackBarAction(
+                label: "Desfazer",
                 onPressed: () {
                   setState(() {
                     _toDoList.insert(_lastRemovedPos, _lastRemoved);
@@ -165,7 +164,6 @@ class _HomeState extends State<Home> {
       },
     );
   }
-  
 
   Future<File> _getFile() async {
     final directory = await getApplicationDocumentsDirectory();
@@ -185,7 +183,5 @@ class _HomeState extends State<Home> {
     } catch (e) {
       return null;
     }
-
   }
 }
-
