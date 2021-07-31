@@ -1,0 +1,4 @@
+github.com/gorilla/websocket v1.4.2 h1:+/TMaTYc4QFitKJxsQ7Yye35DkWvkdLcvGKqM+x0Ufc=
+github.com/gorilla/websocket v1.4.2/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
+github.com/marcelo68ms/binance-go v0.0.0-20200615163508-f3e4c7422e41 h1:yocsu93gsj6ZqKkrDeTNTRg6W2E5pPrxJGzsBSHoK+w=
+github.com/marcelo68ms/binance-go v0.0.0-20200615163508-f3e4c7422e41/go.mod h1:YlcqJL1WhYKy+cHqwzMevMHINY97kqet3zzxdwqiJxE=

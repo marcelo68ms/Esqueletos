@@ -11,6 +11,7 @@ import (
 
 	"github.com/marcelo68ms/binance-go"
 	"github.com/marcelo68ms/binance-go/account"
+	"github.com/marcelo68ms/binance-go/market"
 )
 
 const apiKey string = "HfphXtx12kQwKtWI2Ia4nTt4njh15GP48kyrdo7oEXuh7smIdeySyhSeH4RihvXB"
@@ -267,11 +268,27 @@ func compraBTC(moeda string, qtd, preco float64) string {
 	return ordem.ClientOrderID
 }
 
+func livrosNegociacoes() {
+	orderBookParams := market.OrderBookParams{
+		Symbol: "BTCUSDT",
+	}
+
+	p, err := binance.Market().OrderBook(orderBookParams)
+	if err != nil {
+		log.Printf("err = %v", err)
+		return
+	}
+	log.Printf("%v", p.Asks)
+	log.Printf("%v", p.LastUpdateID)
+	log.Printf("%v", p.Bids)
+}
+
 func main() {
 	//carregaSaldo()
 	//	ticketPreco()
 	//compraBTC("BTCUSDT", 0.013530, 8336.02)
-	ordensAbertas()
+	//ordensAbertas()
+	livrosNegociacoes()
 	//ordemCompra()
 	//	res := VendaBTCImediado(apiKey, secretKey, "BTCUSDT", 0.003)
 	//	VendaBTCImediado(apiKey, secretKey, "BTCUSDT", 0.003)
