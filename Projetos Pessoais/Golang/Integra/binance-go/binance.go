@@ -208,8 +208,8 @@ func buscaPreco() {
 		urlBase     = "https://api.binance.com/api/"
 		precoAssent = urlBase + "v3/ticker/price"
 		//dolarBTC    = precoAssent + "?symbol=BTCUSDT"
-		//dolarBTC   = precoAssent + "?symbol=ETHUSDT"
-		dolarBTC   = precoAssent + "?symbol=BNBUSDT"
+		dolarBTC = precoAssent + "?symbol=ETHBUSD"
+		//dolarBTC   = precoAssent + "?symbol=BNBUSDT"
 		precoAtivo Cotacao
 	)
 
@@ -296,7 +296,7 @@ func main() {
 	//fmt.Println(AjustaPrecisaoFloat(8.64736548202, 8))
 	//	fmt.Println(res)
 	//informacoesConta()
-	//buscaPreco()
+	buscaPreco()
 	//carregaSaldo()
 	//consultaOrdem()
 }
