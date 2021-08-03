@@ -38,14 +38,14 @@ class CartScreen extends StatelessWidget {
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
                   Spacer(),
-                  FlatButton(
+                  TextButton(
                     onPressed: () {
                       Provider.of<Orders>(context, listen: false)
                           .addOrder(cart);
                       cart.clear();
                     },
                     child: Text('COMPRAR'),
-                    textColor: Theme.of(context).primaryColor,
+                    //textColor: Theme.of(context).primaryColor,
                   ),
                 ],
               ),
