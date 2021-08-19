@@ -1,2 +1,3 @@
 "# Esqueletos" 
-Base de para uso de projetos pessoais
+Base de para uso de projetos pessoais usando várias tecnologias.
+
