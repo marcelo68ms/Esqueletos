@@ -12,7 +12,7 @@ class MeuAplicativo extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }

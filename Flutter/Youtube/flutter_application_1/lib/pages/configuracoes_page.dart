@@ -1,9 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/config/app_settings.dart';
 import 'package:flutter_application_1/repository/conta_repository.dart';
-import 'package:provider/src/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class ConfiguracoesPage extends StatefulWidget {
   const ConfiguracoesPage({Key? key}) : super(key: key);
@@ -56,6 +58,7 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
     AlertDialog dialog = AlertDialog(
       title: Text('Atualizar Saldo'),
       content: Form(
+        key: form,
         child: TextFormField(
           controller: valor,
           keyboardType: TextInputType.number,

@@ -24,7 +24,7 @@ void main() async {
           create: (context) => AppSettings(),
         ),
       ],
-      child: MeuAplicativo(),
+      child: const MeuAplicativo(),
     ),
   );
 }
