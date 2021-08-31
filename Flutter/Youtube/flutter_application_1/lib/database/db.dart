@@ -28,18 +28,19 @@ class DB {
     await db.execute(_conta);
     await db.execute(_carteira);
     await db.execute(_historico);
+
     await db.insert('conta', {'saldo': 0});
   }
 
   String get _conta => '''
-    CREATE TABLE conta (
+    CREATE TABLE IF NOT EXISTS conta (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       saldo REAL
     );
   ''';
 
   String get _carteira => '''
-    CREATE TABLE carteira (
+    CREATE TABLE IF NOT EXISTS carteira (
       sigla TEXT PRIMARY KEY,
       moeda TEXT,
       quantidade TEXT
@@ -47,7 +48,7 @@ class DB {
   ''';
 
   String get _historico => '''
-    CREATE TABLE conta (
+    CREATE TABLE IF NOT EXISTS conta (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       data_operacao INT,
       tipo_operacao TEXT,
