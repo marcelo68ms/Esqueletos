@@ -37,6 +37,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  intl:
+  provider: ^5.0.0
+  shared_preferences: ^2.0.6
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
+  path_provider: ^2.0.2
+  sqflite: ^2.0.0+4
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
