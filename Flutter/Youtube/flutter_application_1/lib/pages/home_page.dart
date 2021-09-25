@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/moedas_page.dart';
 
+import 'carteira_page.dart';
 import 'configuracoes_page.dart';
 import 'favoritas_page.dart';
 
@@ -37,11 +38,13 @@ class _HomePageState extends State<HomePage> {
         children: [
           MoedasPage(),
           FavoritasPage(),
+          CarteiraPage(),
           ConfiguracoesPage(),
         ],
         onPageChanged: setPaginaAtual,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
@@ -50,6 +53,10 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.star),
             label: 'Favoritas',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance_wallet),
+            label: 'Carteira',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),

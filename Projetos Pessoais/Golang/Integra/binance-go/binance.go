@@ -208,7 +208,7 @@ func buscaPreco() {
 		urlBase     = "https://api.binance.com/api/"
 		precoAssent = urlBase + "v3/ticker/price"
 		//dolarBTC    = precoAssent + "?symbol=BTCUSDT"
-		dolarBTC = precoAssent + "?symbol=ETHBUSD"
+		dolarBTC = precoAssent + "?symbol=BTCUSDT"
 		//dolarBTC   = precoAssent + "?symbol=BNBUSDT"
 		precoAtivo Cotacao
 	)
@@ -217,10 +217,15 @@ func buscaPreco() {
 	if err != nil {
 		fmt.Println("Erro na busca do Serviço de Preços !!")
 	} else {
-		data, _ := ioutil.ReadAll(response.Body)
+		data, nerro := ioutil.ReadAll(response.Body)
+		fmt.Print(data)
+		if nerro != nil {
+			fmt.Printf("Erro 1 --> %v", nerro)
+		}
+
 		erro := json.Unmarshal([]byte(data), &precoAtivo)
 		if erro != nil {
-			fmt.Println(erro)
+			fmt.Printf("Erro 2 --> %v", erro)
 		}
 	}
 	fmt.Println(precoAtivo.Symbol)
@@ -283,12 +288,23 @@ func livrosNegociacoes() {
 	log.Printf("%v", p.Bids)
 }
 
+func novoPreco() {
+	p, err := binance.Market().Prices()
+
+	if err != nil {
+		log.Printf("err = %v", err)
+		return
+	}
+	//log.Printf("%v", p)
+	log.Printf("%v", p["BTCUSDT"].Price)
+}
+
 func main() {
 	//carregaSaldo()
 	//	ticketPreco()
 	//compraBTC("BTCUSDT", 0.013530, 8336.02)
 	//ordensAbertas()
-	livrosNegociacoes()
+	// livrosNegociacoes()
 	//ordemCompra()
 	//	res := VendaBTCImediado(apiKey, secretKey, "BTCUSDT", 0.003)
 	//	VendaBTCImediado(apiKey, secretKey, "BTCUSDT", 0.003)
@@ -299,4 +315,5 @@ func main() {
 	buscaPreco()
 	//carregaSaldo()
 	//consultaOrdem()
+	novoPreco()
 }
