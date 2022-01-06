@@ -37,4 +37,9 @@ func truncar() {
 
 func main() {
 	printMemUsage()
+	fmt.Println("-------------------------------------------------")
+	truncar()
+	fmt.Println("-------------------------------------------------")
+	fmt.Println(ajustaPrecisaoFloat(34.07654, 0))
+	fmt.Println("-------------------------------------------------")
 }
