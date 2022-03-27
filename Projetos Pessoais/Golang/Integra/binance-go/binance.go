@@ -375,6 +375,5 @@ func main() {
 	//	buscaPreco()
 	//consultaOrdem()
 	//novoPreco()
-	//	informacoesConta()
 	//estatistica()
 }
