@@ -20,6 +20,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"time"
 
 	firebase "firebase.google.com/go"
 	"google.golang.org/api/iterator"
@@ -85,7 +86,7 @@ func Inicializa(ctx context.Context) *firestore.Client {
 	app, err := firebase.NewApp(ctx, nil, opt)
 
 	if err != nil {
-		log.Fatal("Erro de inicialização: %v", err)
+		log.Fatal("Erro de inicialização: %s", err)
 	}
 	client, err := app.Firestore(ctx)
 	if err != nil {
@@ -135,5 +136,39 @@ func main() {
 
 	//	addLinha(*client, ctx)
 	//altLinha(*client, ctx)
-	delLinha(*client, ctx)
+	//delLinha(*client, ctx)
+	//addLinhaCotacao(*client, ctx)
+	addLinhaSeguir(*client, ctx)
+	//CarregaTodosAtivos(*client, ctx)
 }
+
+func addLinhaCotacao(client firestore.Client, ctx context.Context) {
+	_, err := client.Collection("cotacao").Doc(time.Now().String()).Set(ctx, map[string]interface{}{
+		"ativo": "PETR4",
+		"valor": 35.45,
+	})
+	if err != nil {
+		// Handle any errors in an appropriate way, such as returning them.
+		log.Printf("An error has occurred: %s", err)
+	}
+}
+
+func addLinhaSeguir(client firestore.Client, ctx context.Context) {
+
+	data := time.Now()
+
+	_, err := client.Collection("seguidos").Doc("marcelo68ms@gmail.com|USIM5").Set(ctx, map[string]interface{}{
+		"ativo":           "USIM5",
+		"dataDesativacao": data.Format("2006-01-02 15:04:05"),
+		"email":           "marcelo68ms@gmail.com",
+		"valorCompra":     16.03,
+		"valorMaximo":     18.43,
+		"valorMinimo":     15.71,
+	})
+	if err != nil {
+		// Handle any errors in an appropriate way, such as returning them.
+		log.Printf("An error has occurred: %s", err)
+	}
+}
+
+//------------------------------------------------------------------------------------------------
