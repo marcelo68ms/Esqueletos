@@ -1,7 +1,7 @@
 class Pessoa {
   //String? podeNulo;
-  //late String receberaValorMaisTarde;
-  //late String _nome; // Private
+  //late String receberaValorMaisTarde;   // a carga será feita posteiormente
+  //late String _nome; // Private // a carga será feita posteiormente
   String nome;
   String sobrenome;
 

@@ -7,9 +7,11 @@ class MoedasPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cripto Moedas'),
+        title: const Text('Crypto Moedas'),
       ),
-      body: Center(child: Text('Feito')),
+      body: const Center(
+        child: Text('Olá'),
+      ),
     );
   }
 }

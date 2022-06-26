@@ -6,7 +6,6 @@ import 'package:meals/screens/meal_detail_screen.dart';
 import 'package:meals/screens/settings_screen.dart';
 import 'package:meals/screens/tabs_screen.dart';
 import 'screens/categories_meals_screen.dart';
-import 'screens/meal_detail_screen.dart';
 import 'utils/app_routes.dart';
 
 void main() => runApp(MyApp());

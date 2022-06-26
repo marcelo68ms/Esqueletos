@@ -29,6 +29,15 @@ import (
 	"cloud.google.com/go/firestore"
 )
 
+type Leitura struct {
+	AtivCodigo     string
+	SegDesativa    string
+	CliEmail       string
+	SegValorCompra float64
+	SegMaximo      float64
+	SegMinimo      float64
+}
+
 func main_X() {
 	// Get a Firestore client.
 	ctx := context.Background()
@@ -138,8 +147,10 @@ func main() {
 	//altLinha(*client, ctx)
 	//delLinha(*client, ctx)
 	//addLinhaCotacao(*client, ctx)
-	addLinhaSeguir(*client, ctx)
+	//addLinhaSeguir(*client, ctx)
 	//CarregaTodosAtivos(*client, ctx)
+	//fmt.Println(expoSeguirV2(*client, ctx))
+	lerDocumentos(*client, ctx)
 }
 
 func addLinhaCotacao(client firestore.Client, ctx context.Context) {
@@ -171,4 +182,132 @@ func addLinhaSeguir(client firestore.Client, ctx context.Context) {
 	}
 }
 
+func expoeTodosAtivos(client firestore.Client, ctx context.Context) {
+
+	// [START firestore_setup_dataset_read]
+	iter := client.Collection("ativos").Documents(ctx)
+	for {
+		doc, err := iter.Next()
+		if err == iterator.Done {
+			break
+		}
+		if err != nil {
+			log.Fatalf("Failed to iterate: %v", err)
+		}
+		fmt.Println(doc.Data())
+	}
+}
+
+func expoSeguir(client firestore.Client, ctx context.Context) []Leitura {
+	var ativos []Leitura
+
+	iter := client.Collection("seguidos").Documents(ctx)
+	for {
+		doc, err := iter.Next()
+		if err == iterator.Done {
+			break
+		}
+		if err != nil {
+			log.Fatalf("Failed to iterate: %v", err)
+		}
+		todos := doc.Data()
+		/*
+			for k, v := range todos {
+				switch c := v.(type) {
+				case string:
+					fmt.Printf("Item %q is a string, containing %q\n", k, c)
+				case float64:
+					fmt.Printf("Looks like item %q is a number, specifically %f\n", k, c)
+				default:
+					fmt.Printf("Not sure what type item %q is, but I think it might be %T\n", k, c)
+				}
+			}
+		*/
+		var leitura Leitura
+		for campo, item := range todos {
+
+			switch valor := item.(type) {
+			case string:
+				if campo == "ativo" {
+					leitura.AtivCodigo = valor
+				}
+				if campo == "email" {
+					leitura.CliEmail = valor
+				}
+				if campo == "dataDesativacao" {
+					leitura.SegDesativa = valor
+				}
+			case float64:
+				if campo == "valorCompra" {
+					leitura.SegValorCompra = valor
+				}
+				if campo == "valorMaximo" {
+					leitura.SegMaximo = valor
+				}
+				if campo == "valorMinimo" {
+					leitura.SegMinimo = valor
+				}
+
+			default:
+				fmt.Printf("Not sure what type item %q is, but I think it might be %T\n", campo, valor)
+			}
+
+		}
+		ativos = append(ativos, leitura)
+	}
+	return ativos
+}
+
+func expoSeguirV2(client firestore.Client, ctx context.Context) []Leitura {
+	var ativos []Leitura
+
+	iter := client.Collection("seguidos").Documents(ctx)
+	for {
+		doc, err := iter.Next()
+		if err == iterator.Done {
+			break
+		}
+		if err != nil {
+			log.Fatalf("Failed to iterate: %v", err)
+		}
+
+		var leitura Leitura
+		var mediano interface{}
+
+		mediano, _ = doc.DataAt("ativo")
+		leitura.AtivCodigo = fmt.Sprintf("%v", mediano)
+
+		mediano, _ = doc.DataAt("email")
+		leitura.CliEmail = fmt.Sprintf("%v", mediano)
+
+		mediano, _ = doc.DataAt("dataDesativacao")
+		leitura.SegDesativa = fmt.Sprintf("%v", mediano)
+
+		mediano, _ = doc.DataAt("valorCompra")
+		leitura.SegValorCompra = mediano.(float64)
+
+		mediano, _ = doc.DataAt("valorMaximo")
+		leitura.SegMaximo = mediano.(float64)
+
+		mediano, _ = doc.DataAt("valorMinimo")
+		leitura.SegMinimo = mediano.(float64)
+
+		ativos = append(ativos, leitura)
+	}
+	return ativos
+}
+
 //------------------------------------------------------------------------------------------------
+func lerDocumentos(client firestore.Client, ctx context.Context) {
+	itens := client.Collection("seguidos").Doc("marcelo68ms@gmail.com|AMER3").Snapshots(ctx)
+	defer itens.Stop()
+
+	doc, err := itens.Next()
+
+	if err != nil {
+
+	}
+	fmt.Println(doc.Data())
+	x, _ := doc.DataAt("ativo")
+	fmt.Println(x)
+}
