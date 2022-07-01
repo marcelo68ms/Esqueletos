@@ -1,6 +1,6 @@
 import 'package:crypto/models/moeda_dao.dart';
 
-class MoedaRepository {
+class MoedaModel {
   static List<Moeda> tabela = [
     Moeda(
       icone: 'images/btc.png',
