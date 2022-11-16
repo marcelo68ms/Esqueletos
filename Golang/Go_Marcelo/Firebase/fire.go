@@ -147,10 +147,10 @@ func main() {
 	//altLinha(*client, ctx)
 	//delLinha(*client, ctx)
 	//addLinhaCotacao(*client, ctx)
-	//addLinhaSeguir(*client, ctx)
+	addLinhaSeguir(*client, ctx)
 	//CarregaTodosAtivos(*client, ctx)
 	//fmt.Println(expoSeguirV2(*client, ctx))
-	lerDocumentos(*client, ctx)
+	//lerDocumentos(*client, ctx)
 }
 
 func addLinhaCotacao(client firestore.Client, ctx context.Context) {
@@ -168,13 +168,18 @@ func addLinhaSeguir(client firestore.Client, ctx context.Context) {
 
 	data := time.Now()
 
-	_, err := client.Collection("seguidos").Doc("marcelo68ms@gmail.com|USIM5").Set(ctx, map[string]interface{}{
-		"ativo":           "USIM5",
+	ativo := "XPML11"
+	valorBase := 97.80
+	maximo := (valorBase * 1.12)
+	minimo := valorBase - (valorBase * 0.03)
+
+	_, err := client.Collection("seguidos").Doc("marcelo68ms@gmail.com|"+ativo).Set(ctx, map[string]interface{}{
+		"ativo":           ativo,
 		"dataDesativacao": data.Format("2006-01-02 15:04:05"),
 		"email":           "marcelo68ms@gmail.com",
-		"valorCompra":     16.03,
-		"valorMaximo":     18.43,
-		"valorMinimo":     15.71,
+		"valorCompra":     valorBase,
+		"valorMaximo":     maximo,
+		"valorMinimo":     minimo,
 	})
 	if err != nil {
 		// Handle any errors in an appropriate way, such as returning them.
@@ -297,7 +302,7 @@ func expoSeguirV2(client firestore.Client, ctx context.Context) []Leitura {
 	return ativos
 }
 
-//------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------
 func lerDocumentos(client firestore.Client, ctx context.Context) {
 	itens := client.Collection("seguidos").Doc("marcelo68ms@gmail.com|AMER3").Snapshots(ctx)
 	defer itens.Stop()

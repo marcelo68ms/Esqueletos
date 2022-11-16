@@ -11,16 +11,16 @@ func main() {
 
 func send(body string) {
 	from := "marcelo68ms@gmail.com"
-	pass := "B7556E35AAA2E5E81B68EE748AF1CE7D024A"
-	to := "marcelo68ms@gmail.com"
+	pass := "vtbvtkzdiqukkxkz"
+	to := "marcelo68ms@yahoo.com.br"
 
 	msg := "From: " + from + "\n" +
 		"To: " + to + "\n" +
 		"Subject: [Odorico] - Negociação de Moedas\n\n" +
 		body
 
-	err := smtp.SendMail("smtp.elasticemail.com:2525",
-		smtp.PlainAuth("", from, pass, "smtp.elasticemail.com"),
+	err := smtp.SendMail("smtp.gmail.com:587",
+		smtp.PlainAuth("", from, pass, "smtp.gmail.com"),
 		from, []string{to}, []byte(msg))
 
 	if err != nil {

@@ -14,7 +14,7 @@ class CryptoWallet extends StatelessWidget {
       title: 'Crypto Moedas',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.indigo),
-      home: MoedasPage(),
+      home: const MoedasPage(),
     );
   }
 }
