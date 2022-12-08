@@ -321,7 +321,7 @@ func novoPreco() {
 		return
 	}
 	//log.Printf("%v", p)
-	log.Printf("%v", p["BTCUSDT"].Price)
+	log.Printf("%v", p["BTCBRL"].Price)
 }
 
 func buscaPrecoWebSocket() {
@@ -371,9 +371,9 @@ func main() {
 	//CompraBTCImediato(apiKey, secretKey, "BTCUSDT", 0.023553)
 	//fmt.Println(AjustaPrecisaoFloat(8.64736548202, 8))
 	//	fmt.Println(res)
-	informacoesConta()
+	//informacoesConta()
 	//	buscaPreco()
 	//consultaOrdem()
-	//novoPreco()
+	novoPreco()
 	//estatistica()
 }
