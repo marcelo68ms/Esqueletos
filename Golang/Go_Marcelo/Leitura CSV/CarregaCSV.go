@@ -5,9 +5,10 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 )
 
-func readCsvFile(filePath string) [][]string {
+func ReadCsvFile(filePath string) [][]string {
 	f, err := os.Open(filePath)
 	if err != nil {
 		log.Fatal("Unable to read input file "+filePath, err)
@@ -15,6 +16,7 @@ func readCsvFile(filePath string) [][]string {
 	defer f.Close()
 
 	csvReader := csv.NewReader(f)
+	csvReader.Comma = ';'
 	records, err := csvReader.ReadAll()
 
 	if err != nil {
@@ -25,6 +27,9 @@ func readCsvFile(filePath string) [][]string {
 }
 
 func main() {
-	records := readCsvFile("inflacao.csv")
-	fmt.Println(records[1][3])
+	records := ReadCsvFile("inflacao.csv")
+
+	teste, _ := strconv.ParseFloat("2,5", 4)
+	fmt.Println(teste)
+	fmt.Println(records[1][2])
 }
