@@ -64,7 +64,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Perguntas'),
+          title: const Text('Perguntas'),
         ),
         body: temPerguntaSelecionada
             ? Questionario(
@@ -79,6 +79,9 @@ class _PerguntaAppState extends State<PerguntaApp> {
 }
 
 class PerguntaApp extends StatefulWidget {
+  const PerguntaApp({super.key});
+
+  @override
   _PerguntaAppState createState() {
     return _PerguntaAppState();
   }

@@ -10,10 +10,10 @@ class Order {
   final DateTime date;
 
   Order({
-    this.id,
-    this.total,
-    this.products,
-    this.date,
+    required this.id,
+    required this.total,
+    required this.products,
+    required this.date,
   });
 }
 

@@ -6,9 +6,9 @@ class Badge extends StatelessWidget {
   final Color color;
 
   Badge({
-    @required this.child,
-    @required this.value,
-    this.color,
+    required this.child,
+    required this.value,
+    required this.color,
   });
 
   @override

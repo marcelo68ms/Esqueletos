@@ -52,8 +52,8 @@ class AdaptativeDatePicker extends StatelessWidget {
                         : 'Data Selecionada: ${DateFormat('dd/MM/y').format(selectedDate)}',
                   ),
                 ),
-                FlatButton(
-                  textColor: Theme.of(context).primaryColor,
+                TextButton(
+                  //textColor: Theme.of(context).primaryColor,
                   child: Text(
                     'Selecionar Data',
                     style: TextStyle(

@@ -51,6 +51,7 @@ func Conexao() *sql.DB {
 
 func addAtivo(client firestore.Client, ctx context.Context, ativo Ativos) {
 	_, err := client.Collection("ativos").Doc(ativo.Ativcod).Set(ctx, map[string]interface{}{
+		"codigo": ativo.Ativcod,
 		"nome":   ativo.AtivNome,
 		"status": ativo.AtivStatus,
 	})

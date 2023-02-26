@@ -70,7 +70,7 @@ class Cart with ChangeNotifier {
       return;
     }
 
-    if (_items[productId].quantity == 1) {
+    if (_items[productId]?.quantity == 1) {
       _items.remove(productId);
     } else {
       _items.update(
