@@ -5,11 +5,11 @@ class MealDetailScreen extends StatelessWidget {
   final Function(Meal) onToggleFavorite;
   final bool Function(Meal) isFavorite;
 
-  const MealDetailScreen(this.onToggleFavorite, this.isFavorite);
+  const MealDetailScreen(this.onToggleFavorite, this.isFavorite, {super.key});
 
   Widget _createSectionTitle(BuildContext context, String title) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       child: Text(
         title,
         style: Theme.of(context).textTheme.headline6,
@@ -21,8 +21,8 @@ class MealDetailScreen extends StatelessWidget {
     return Container(
       width: 330,
       height: 200,
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: Colors.grey),
@@ -34,7 +34,7 @@ class MealDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final meal = ModalRoute.of(context).settings.arguments as Meal;
+    final meal = ModalRoute.of(context)?.settings.arguments as Meal;
 
     return Scaffold(
       appBar: AppBar(
@@ -43,7 +43,7 @@ class MealDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: 300,
               width: double.infinity,
               child: Image.network(
@@ -82,7 +82,7 @@ class MealDetailScreen extends StatelessWidget {
                         ),
                         title: Text(meal.steps[index]),
                       ),
-                      Divider(),
+                      const Divider(),
                     ],
                   );
                 },

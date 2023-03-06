@@ -22,11 +22,10 @@ import (
 	"log"
 	"time"
 
+	"cloud.google.com/go/firestore"
 	firebase "firebase.google.com/go"
 	"google.golang.org/api/iterator"
 	"google.golang.org/api/option"
-
-	"cloud.google.com/go/firestore"
 )
 
 type Leitura struct {
@@ -90,7 +89,7 @@ func main_X() {
 func Inicializa(ctx context.Context) *firestore.Client {
 
 	//	ctx := context.Background()
-	opt := option.WithCredentialsFile("/home/marcelo/Trabalho/Empresas/TopSeed/felicitatem/Fontes/SeguirAtivos/backend/felicitatem-5224a-firebase-adminsdk-68o8w-ba1383a048.json")
+	opt := option.WithCredentialsFile("/home/marcelo/Projetos/felicitatem/Fontes/SeguirAtivos/backend/felicitatem-5224a-firebase-adminsdk-68o8w-ba1383a048.json")
 
 	app, err := firebase.NewApp(ctx, nil, opt)
 
@@ -147,8 +146,8 @@ func main() {
 	//altLinha(*client, ctx)
 	//delLinha(*client, ctx)
 	//addLinhaCotacao(*client, ctx)
-	addLinhaSeguir(*client, ctx)
-	//CarregaTodosAtivos(*client, ctx)
+	//addLinhaSeguir(*client, ctx)
+	CarregaTodosAtivos(*client, ctx)
 	//fmt.Println(expoSeguirV2(*client, ctx))
 	//lerDocumentos(*client, ctx)
 }
