@@ -147,7 +147,8 @@ func main() {
 	//delLinha(*client, ctx)
 	//addLinhaCotacao(*client, ctx)
 	//addLinhaSeguir(*client, ctx)
-	CarregaTodosAtivos(*client, ctx)
+	//CarregaTodosAtivos(*client, ctx)
+	CarregaTodasFIIs(*client, ctx)
 	//fmt.Println(expoSeguirV2(*client, ctx))
 	//lerDocumentos(*client, ctx)
 }

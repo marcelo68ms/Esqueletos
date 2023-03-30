@@ -19,6 +19,8 @@ type Ativos struct {
 
 const qryBuscaAtivos string = "SELECT AtivCodigo, AtivNome, AtivStatus FROM dbInveste.TblAtivos ORDER BY AtivCodigo;"
 
+const qryBuscaFIIs string = "SELECT AtivCodigo, AtivNome, AtivStatus FROM dbInveste.TblFII ORDER BY AtivCodigo;"
+
 func CarregaTodosAtivos(client firestore.Client, ctx context.Context) {
 	db := Conexao()
 	defer db.Close()
@@ -48,6 +50,44 @@ func CarregaTodosAtivos(client firestore.Client, ctx context.Context) {
 			"status": ativo.AtivStatus,
 		}
 		_, err := client.Collection("ativos").Doc("acao").Set(ctx, doc, firestore.MergeAll)
+
+		if err != nil {
+			// Handle any errors in an appropriate way, such as returning them.
+			log.Printf("An error has occurred: %s", err)
+		}
+
+	}
+}
+
+func CarregaTodasFIIs(client firestore.Client, ctx context.Context) {
+	db := Conexao()
+	defer db.Close()
+
+	rows, erro := db.Query(qryBuscaFIIs)
+
+	if erro != nil {
+		fmt.Printf("Problema na leitura das tabelas - %v", erro)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		var ativo Ativos
+		erro := rows.Scan(&ativo.Ativcod, &ativo.AtivNome, &ativo.AtivStatus)
+
+		if erro != nil {
+			fmt.Printf("Problema na leitura do banco - %v", erro)
+		}
+		// ----
+		doc := make(map[string]map[string]interface{})
+		doc["assets"] = make(map[string]interface{})
+
+		doc["assets"][ativo.Ativcod] = map[string]interface{}{
+			"codigo": ativo.Ativcod,
+			"nome":   ativo.AtivNome,
+			"status": ativo.AtivStatus,
+		}
+		_, err := client.Collection("ativos").Doc("fii").Set(ctx, doc, firestore.MergeAll)
 
 		if err != nil {
 			// Handle any errors in an appropriate way, such as returning them.
