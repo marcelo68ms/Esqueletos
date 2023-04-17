@@ -29,7 +29,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
     super.didChangeDependencies();
 
     if (_formData.isEmpty) {
-      final product = ModalRoute.of(context).settings.arguments as Product;
+      final product = ModalRoute.of(context)?.settings.arguments as Product;
       if (product != null) {
         _formData['id'] = product.id;
         _formData['title'] = product.title;

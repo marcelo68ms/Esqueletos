@@ -1,4 +1,4 @@
-package com.example.meals
+package br.com.topseed.meals
 
 import io.flutter.embedding.android.FlutterActivity
 

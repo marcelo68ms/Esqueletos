@@ -6,7 +6,7 @@ class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
   final void Function(String) onRemove;
 
-  TransactionList(this.transactions, this.onRemove);
+  const TransactionList(this.transactions, this.onRemove, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,14 @@ class TransactionList extends StatelessWidget {
         ? LayoutBuilder(
             builder: (ctx, constraints) {
               return Column(
-                children: <Widget>[
-                  SizedBox(height: 20),
+                children: [
+                  const SizedBox(height: 20),
                   Text(
                     'Nenhuma Transação Cadastrada!',
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.labelLarge,
                   ),
-                  SizedBox(height: 20),
-                  Container(
+                  const SizedBox(height: 20),
+                  SizedBox(
                     height: constraints.maxHeight * 0.6,
                     child: Image.asset(
                       'assets/images/waiting.png',
@@ -38,7 +38,7 @@ class TransactionList extends StatelessWidget {
               final tr = transactions[index];
               return Card(
                 elevation: 5,
-                margin: EdgeInsets.symmetric(
+                margin: const EdgeInsets.symmetric(
                   vertical: 8,
                   horizontal: 5,
                 ),
@@ -54,21 +54,22 @@ class TransactionList extends StatelessWidget {
                   ),
                   title: Text(
                     tr.title,
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   subtitle: Text(
                     DateFormat('d MMM y').format(tr.date),
                   ),
                   trailing: MediaQuery.of(context).size.width > 480
-                      ? FlatButton.icon(
+                      ? TextButton.icon(
                           onPressed: () => onRemove(tr.id),
-                          icon: Icon(Icons.delete),
-                          label: Text('Excluir'),
-                          textColor: Theme.of(context).errorColor,
+                          icon: const Icon(Icons.delete),
+                          label: const Text('Excluir'),
+
+                          //textColor: Theme.of(context).errorColor,
                         )
                       : IconButton(
-                          icon: Icon(Icons.delete),
-                          color: Theme.of(context).errorColor,
+                          icon: const Icon(Icons.delete),
+                          color: Theme.of(context).colorScheme.primary,
                           onPressed: () => onRemove(tr.id),
                         ),
                 ),
