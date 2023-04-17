@@ -6,11 +6,11 @@ import 'package:meals/models/meal.dart';
 class CategoriesMealsScreen extends StatelessWidget {
   final List<Meal> meals;
 
-  const CategoriesMealsScreen(this.meals);
+  const CategoriesMealsScreen(this.meals, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    final category = ModalRoute.of(context).settings.arguments as Category;
+    final category = ModalRoute.of(context)?.settings.arguments as Category;
 
     final categoryMeals = meals.where((meal) {
       return meal.categories.contains(category.id);

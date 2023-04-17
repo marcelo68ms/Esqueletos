@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:meals/utils/app_routes.dart';
 
 class MainDrawer extends StatelessWidget {
-  Widget _createItem(IconData icon, String label, Function onTap) {
+  const MainDrawer({super.key});
+
+  Widget _createItem(IconData icon, String label, Function tap) {
     return ListTile(
       leading: Icon(
         icon,
@@ -10,13 +12,13 @@ class MainDrawer extends StatelessWidget {
       ),
       title: Text(
         label,
-        style: TextStyle(
+        style: const TextStyle(
           fontFamily: 'RobotoCondensed',
           fontSize: 24,
           fontWeight: FontWeight.bold,
         ),
       ),
-      onTap: onTap,
+      onTap: tap,
     );
   }
 
@@ -28,7 +30,7 @@ class MainDrawer extends StatelessWidget {
           Container(
             height: 120,
             width: double.infinity,
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             color: Theme.of(context).accentColor,
             alignment: Alignment.bottomRight,
             child: Text(
@@ -40,7 +42,7 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           _createItem(

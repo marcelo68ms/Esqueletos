@@ -5,7 +5,6 @@ import 'package:expenses/components/transaction_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'components/transaction_form.dart';
 import 'components/transaction_list.dart';
 import 'components/chart.dart';
 import 'models/transaction.dart';
@@ -15,31 +14,28 @@ main() => runApp(ExpensesApp());
 class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final ThemeData tema = ThemeData();
+
     return MaterialApp(
       home: MyHomePage(),
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.amber,
-        fontFamily: 'Quicksand',
-        textTheme: ThemeData.light().textTheme.copyWith(
-              headline6: TextStyle(
-                fontFamily: 'OpenSans',
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-              button: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-        appBarTheme: AppBarTheme(
-          textTheme: ThemeData.light().textTheme.copyWith(
-                headline6: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+      theme: tema.copyWith(
+        colorScheme: tema.colorScheme.copyWith(
+          primary: Colors.purple,
+          secondary: Colors.amber,
+        ),
+        textTheme: tema.textTheme.copyWith(
+          titleLarge: const TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+              fontFamily: 'OpenSans',
+              fontSize: 20,
+              fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -47,6 +43,8 @@ class ExpensesApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -58,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
       return tr.date.isAfter(DateTime.now().subtract(
-        Duration(days: 7),
+        const Duration(days: 7),
       ));
     }).toList();
   }

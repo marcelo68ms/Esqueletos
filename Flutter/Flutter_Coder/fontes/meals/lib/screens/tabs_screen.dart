@@ -7,7 +7,7 @@ import 'package:meals/screens/favorite_screen.dart';
 class TabsScreen extends StatefulWidget {
   final List<Meal> favoriteMeals;
 
-  const TabsScreen(this.favoriteMeals);
+  const TabsScreen(this.favoriteMeals, {super.key});
 
   @override
   _TabsScreenState createState() => _TabsScreenState();
@@ -15,7 +15,7 @@ class TabsScreen extends StatefulWidget {
 
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedScreenIndex = 0;
-  List<Map<String, Object>> _screens;
+  late List<Map<String, Object>> _screens;
 
   @override
   void initState() {
@@ -44,7 +44,7 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(_screens[_selectedScreenIndex]['title']),
       ),
-      drawer: MainDrawer(),
+      drawer: const MainDrawer(),
       body: _screens[_selectedScreenIndex]['screen'],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectScreen,
@@ -55,13 +55,13 @@ class _TabsScreenState extends State<TabsScreen> {
         type: BottomNavigationBarType.shifting,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            title: Text('Categorias'),
+            icon: const Icon(Icons.category),
+            label: 'Categorias',
             backgroundColor: Theme.of(context).primaryColor,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.star),
-            title: Text('Favoritos'),
+            icon: const Icon(Icons.star),
+            label: 'Favoritos',
             backgroundColor: Theme.of(context).primaryColor,
           ),
         ],

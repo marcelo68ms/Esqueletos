@@ -6,7 +6,6 @@ import 'package:meals/screens/meal_detail_screen.dart';
 import 'package:meals/screens/settings_screen.dart';
 import 'package:meals/screens/tabs_screen.dart';
 import 'screens/categories_meals_screen.dart';
-import 'screens/meal_detail_screen.dart';
 import 'utils/app_routes.dart';
 
 void main() => runApp(MyApp());
@@ -57,11 +56,11 @@ class _MyAppState extends State<MyApp> {
       title: 'DeliMeals',
       theme: ThemeData(
         primarySwatch: Colors.pink,
-        accentColor: Colors.amber,
+        secondaryHeaderColor: Colors.amber,
         fontFamily: 'Raleway',
         canvasColor: Color.fromRGBO(255, 254, 229, 1),
         textTheme: ThemeData.light().textTheme.copyWith(
-              headline6: TextStyle(
+              displayMedium: TextStyle(
                 fontSize: 20,
                 fontFamily: 'RobotoCondensed',
               ),

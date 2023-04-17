@@ -22,7 +22,7 @@ class AppInic extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  var items = new List<Item>();
+  var items = [];
 
   HomePage() {
     items = [];
