@@ -16,7 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  http: ^0.12.1
+  http: ^0.13.5
 
   convert: ^2.0.2
 
