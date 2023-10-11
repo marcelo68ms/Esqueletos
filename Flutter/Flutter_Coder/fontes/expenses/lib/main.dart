@@ -9,15 +9,17 @@ import 'components/transaction_list.dart';
 import 'components/chart.dart';
 import 'models/transaction.dart';
 
-main() => runApp(ExpensesApp());
+main() => runApp(const ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
+  const ExpensesApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData();
 
     return MaterialApp(
-      home: MyHomePage(),
+      home: const MyHomePage(),
       theme: tema.copyWith(
         colorScheme: tema.colorScheme.copyWith(
           primary: Colors.purple,
@@ -122,16 +124,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     ];
 
-    final PreferredSizeWidget appBar = Platform.isIOS
+    final Widget appBar = Platform.isIOS
         ? CupertinoNavigationBar(
-            middle: Text('Despesas Pessoais'),
+            middle: const Text('Despesas Pessoais'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: actions,
             ),
           )
         : AppBar(
-            title: Text('Despesas Pessoais'),
+            title: const Text('Despesas Pessoais'),
             actions: actions,
           );
 
