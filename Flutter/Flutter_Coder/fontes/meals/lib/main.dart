@@ -8,10 +8,13 @@ import 'package:meals/screens/tabs_screen.dart';
 import 'screens/categories_meals_screen.dart';
 import 'utils/app_routes.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _MyAppState createState() => _MyAppState();
 }
 
@@ -19,7 +22,7 @@ class _MyAppState extends State<MyApp> {
   Settings settings = Settings();
 
   List<Meal> _availableMeals = DUMMY_MEALS;
-  List<Meal> _favoriteMeals = [];
+  final List<Meal> _favoriteMeals = [];
 
   void _filterMeals(Settings settings) {
     setState(() {

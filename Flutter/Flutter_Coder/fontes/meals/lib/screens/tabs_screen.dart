@@ -42,15 +42,15 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_screens[_selectedScreenIndex]['title']),
+        title: Text('${_screens[_selectedScreenIndex]['title']}'),
       ),
       drawer: const MainDrawer(),
-      body: _screens[_selectedScreenIndex]['screen'],
+      body: _screens[_selectedScreenIndex]['screen'] as Widget,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectScreen,
         backgroundColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.white,
-        selectedItemColor: Theme.of(context).accentColor,
+        selectedItemColor: Theme.of(context).colorScheme.secondary,
         currentIndex: _selectedScreenIndex,
         type: BottomNavigationBarType.shifting,
         items: [

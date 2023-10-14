@@ -95,8 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _getIconButton(IconData icon, Function fn) {
     return Platform.isIOS
-        ? GestureDetector(onTap: fn, child: Icon(icon))
-        : IconButton(icon: Icon(icon), onPressed: fn);
+        ? GestureDetector(onTap: fn(), child: Icon(icon))
+        : IconButton(icon: Icon(icon), onPressed: fn());
   }
 
   @override

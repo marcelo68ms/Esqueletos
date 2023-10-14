@@ -18,7 +18,7 @@ class MainDrawer extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onTap: tap,
+      onTap: tap(),
     );
   }
 
@@ -31,7 +31,7 @@ class MainDrawer extends StatelessWidget {
             height: 120,
             width: double.infinity,
             padding: const EdgeInsets.all(20),
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             alignment: Alignment.bottomRight,
             child: Text(
               'Vamos Cozinhar ?',
