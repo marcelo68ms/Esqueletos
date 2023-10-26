@@ -23,7 +23,7 @@ class _TabsScreenState extends State<TabsScreen> {
     _screens = [
       {
         'title': 'Lista de Categorias',
-        'screen': CategoriesScreen(),
+        'screen': const CategoriesScreen(),
       },
       {
         'title': 'Meus Favoritos',

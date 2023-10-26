@@ -48,6 +48,7 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -163,12 +164,12 @@ class _MyHomePageState extends State<MyHomePage> {
             //     ],
             //   ),
             if (_showChart || !isLandscape)
-              Container(
+              SizedBox(
                 height: availableHeight * (isLandscape ? 0.8 : 0.3),
                 child: Chart(_recentTransactions),
               ),
             if (!_showChart || !isLandscape)
-              Container(
+              SizedBox(
                 height: availableHeight * (isLandscape ? 1 : 0.7),
                 child: TransactionList(_transactions, _removeTransaction),
               ),
