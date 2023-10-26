@@ -9,15 +9,17 @@ import 'components/transaction_list.dart';
 import 'components/chart.dart';
 import 'models/transaction.dart';
 
-main() => runApp(ExpensesApp());
+main() => runApp(const ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
+  const ExpensesApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData();
 
     return MaterialApp(
-      home: MyHomePage(),
+      home: const MyHomePage(),
       theme: tema.copyWith(
         colorScheme: tema.colorScheme.copyWith(
           primary: Colors.purple,
@@ -46,6 +48,7 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -93,8 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _getIconButton(IconData icon, Function fn) {
     return Platform.isIOS
-        ? GestureDetector(onTap: fn, child: Icon(icon))
-        : IconButton(icon: Icon(icon), onPressed: fn);
+        ? GestureDetector(onTap: fn(), child: Icon(icon))
+        : IconButton(icon: Icon(icon), onPressed: fn());
   }
 
   @override
@@ -122,16 +125,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     ];
 
-    final PreferredSizeWidget appBar = Platform.isIOS
+    final Widget appBar = Platform.isIOS
         ? CupertinoNavigationBar(
-            middle: Text('Despesas Pessoais'),
+            middle: const Text('Despesas Pessoais'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: actions,
             ),
           )
         : AppBar(
-            title: Text('Despesas Pessoais'),
+            title: const Text('Despesas Pessoais'),
             actions: actions,
           );
 
@@ -161,12 +164,12 @@ class _MyHomePageState extends State<MyHomePage> {
             //     ],
             //   ),
             if (_showChart || !isLandscape)
-              Container(
+              SizedBox(
                 height: availableHeight * (isLandscape ? 0.8 : 0.3),
                 child: Chart(_recentTransactions),
               ),
             if (!_showChart || !isLandscape)
-              Container(
+              SizedBox(
                 height: availableHeight * (isLandscape ? 1 : 0.7),
                 child: TransactionList(_transactions, _removeTransaction),
               ),

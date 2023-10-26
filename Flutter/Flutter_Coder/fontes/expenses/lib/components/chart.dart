@@ -35,7 +35,7 @@ class Chart extends StatelessWidget {
 
   double get _weekTotalValue {
     return groupedTransactions.fold(0.0, (sum, tr) {
-      return sum + tr['value'];
+      return sum + (tr['value'] as double);
     });
   }
 
@@ -53,7 +53,7 @@ class Chart extends StatelessWidget {
               fit: FlexFit.tight,
               child: ChartBar(
                 label: tr['day'].toString(),
-                value: tr['value'],
+                value: tr['value'] as double,
                 percentage: _weekTotalValue == 0
                     ? 0
                     : (tr['value'] as double) / _weekTotalValue,
