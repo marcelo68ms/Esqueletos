@@ -147,10 +147,11 @@ func main() {
 	//delLinha(*client, ctx)
 	//addLinhaCotacao(*client, ctx)
 	//addLinhaSeguir(*client, ctx)
-	CarregaTodosAtivos(*client, ctx)
-	CarregaTodasFIIs(*client, ctx)
+	//CarregaTodosAtivos(*client, ctx)
+	//arregaTodasFIIs(*client, ctx)
 	//fmt.Println(expoSeguirV2(*client, ctx))
 	//lerDocumentos(*client, ctx)
+	allDocs(*client, ctx)
 }
 
 func addLinhaCotacao(client firestore.Client, ctx context.Context) {
