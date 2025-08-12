@@ -7,6 +7,7 @@ import (
 	"log"
 
 	_ "github.com/go-sql-driver/mysql"
+	"google.golang.org/api/iterator"
 
 	"cloud.google.com/go/firestore"
 )
@@ -150,4 +151,21 @@ func addAtivo(client firestore.Client, ctx context.Context, ativo Ativos) {
 		// Handle any errors in an appropriate way, such as returning them.
 		log.Printf("An error has occurred: %s", err)
 	}
+}
+
+// Retorno de todos os documentos de uma coleção
+func allDocs(client firestore.Client, ctx context.Context) error {
+	fmt.Println("Todas Inflações: ")
+	iter := client.Collection("inflacao").Documents(ctx)
+	for {
+		doc, err := iter.Next()
+		if err == iterator.Done {
+			break
+		}
+		if err != nil {
+			return err
+		}
+		fmt.Println(doc.Data())
+	}
+	return nil
 }
