@@ -1,0 +1,5 @@
+module clienteGWT
+
+go 1.25.3
+
+require github.com/dgrijalva/jwt-go/v4 v4.0.0-preview1
