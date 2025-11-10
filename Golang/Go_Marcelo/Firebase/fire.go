@@ -151,7 +151,9 @@ func main() {
 	//arregaTodasFIIs(*client, ctx)
 	//fmt.Println(expoSeguirV2(*client, ctx))
 	//lerDocumentos(*client, ctx)
-	allDocs(*client, ctx)
+	//allDocs(*client, ctx)
+	expoeTodosAtivos(*client, ctx)
+
 }
 
 func addLinhaCotacao(client firestore.Client, ctx context.Context) {
