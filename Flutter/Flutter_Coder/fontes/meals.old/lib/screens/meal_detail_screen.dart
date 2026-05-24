@@ -10,10 +10,7 @@ class MealDetailScreen extends StatelessWidget {
   Widget _createSectionTitle(BuildContext context, String title) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
-      child: Text(
-        title,
-        style: Theme.of(context).textTheme.headline6,
-      ),
+      child: Text(title, style: Theme.of(context).textTheme.headlineMedium),
     );
   }
 
